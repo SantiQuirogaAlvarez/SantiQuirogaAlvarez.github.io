@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Your Name — Portfolio</title>
+  <meta name="description" content="Portfolio of Your Name: projects, resume, and contact." />
+  <style>
+    :root{--max:900px;--pad:20px;font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif}
+    body{margin:0;background:#0b0d12;color:#e8ebf0}
+    header{padding:60px var(--pad) 20px;max-width:var(--max);margin:auto}
+    h1{margin:0 0 6px;font-size:2.25rem}
+    nav a{margin-right:14px;color:#9ab; text-decoration:none}
+    main{max-width:var(--max);margin:20px auto;padding:0 var(--pad)}
+    .card{background:#121621;border:1px solid #1e2635;border-radius:16px;padding:18px 20px;margin:14px 0}
+    a{color:#8bd3ff}
+    footer{max-width:var(--max);margin:40px auto;padding:20px var(--pad);color:#9ab}
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Your Name</h1>
+    <p>CU Boulder student • Portfolio & projects</p>
+    <nav>
+      <a href="#projects">Projects</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+      <a href="/resume.pdf">Resume</a>
+    </nav>
+  </header>
+  <main>
+    <section id="projects">
+      <h2>Projects</h2>
+      <div class="card">
+        <h3>Cool Project</h3>
+        <p>One-liner about what it does and your role.</p>
+        <p><a href="https://github.com/USERNAME/PROJECT">Code</a> · <a href="#">Demo</a></p>
+      </div>
+    </section>
+    <section id="about">
+      <h2>About</h2>
+      <p>Short bio, skills (C/C++/R/Python), interests (mechanical design, data viz, etc.).</p>
+    </section>
+    <section id="contact">
+      <h2>Contact</h2>
+      <p><a href="mailto:you@colorado.edu">you@colorado.edu</a> · <a href="https://www.linkedin.com/in/...">LinkedIn</a></p>
+    </section>
+  </main>
+  <footer>
+    © <span id="y"></span> Your Name
+  </footer>
+  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+</body>
+</html>
