@@ -4,83 +4,164 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Santiago Quiroga — Portfolio</title>
-  <meta name="description" content="Portfolio of Santiago Quiroga: CU Boulder student showcasing projects, resume, and contact." />
-
-  <!-- Open Graph / Twitter for nice link previews -->
-  <meta property="og:title" content="Santiago Quiroga — Portfolio">
-  <meta property="og:description" content="Projects, resume, and contact information.">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="https://YOURUSERNAME.github.io/">
-  <meta property="og:image" content="/assets/preview.png">
-  <meta name="twitter:card" content="summary_large_image">
+  <meta name="description" content="Portfolio of Santiago Quiroga: projects, resume, and contact." />
 
   <style>
-    :root { --max: 900px; --pad: 20px; font-family: system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif }
-    html { scroll-behavior: smooth }
-    body { margin: 0; background: #0b0d12; color: #e8ebf0; line-height: 1.6 }
-    a { color: #8bd3ff; text-underline-offset: 2px }
-    a:hover { text-decoration: underline }
-    :focus-visible { outline: 3px solid #8bd3ff; outline-offset: 2px; border-radius: 6px }
-    header { padding: 60px var(--pad) 20px; max-width: var(--max); margin: auto }
-    h1 { margin: 0 0 6px; font-size: 2.25rem }
-    nav a { margin-right: 14px; color: #9ab; text-decoration: none }
-    nav a:hover { color: #cde }
-    main { max-width: var(--max); margin: 20px auto; padding: 0 var(--pad) }
-    .card { background: #121621; border: 1px solid #1e2635; border-radius: 16px; padding: 18px 20px; margin: 14px 0; transition: transform .1s ease, border-color .1s }
-    .card:hover { transform: translateY(-1px); border-color: #30405a }
-    footer { max-width: var(--max); margin: 40px auto; padding: 20px var(--pad); color: #9ab }
-    /* optional: nicer section spacing */
-    section { scroll-margin-top: 70px; }
+    /* -------------------------------
+       Catppuccin-ish palette (Lite/Dark)
+       ------------------------------- */
+    :root{
+      /* Latte (light) */
+      --bg: #eff1f5;
+      --surface: #e6e9ef;
+      --text: #4c4f69;
+      --muted: #6c6f85;
+      --border: #ccd0da;
+      --accent: #8caaee;   /* blue */
+      --accent-2:#ea76cb;  /* mauve/rose */
+      --shadow: 0 6px 20px rgba(17,17,17,.07);
+      --max: 960px;
+      --pad: 20px;
+      font-family: system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif;
+      line-height: 1.6;
+    }
+
+    @media (prefers-color-scheme: dark){
+      :root{
+        /* Mocha (dark) */
+        --bg:#11111b;
+        --surface:#181825;
+        --text:#cdd6f4;
+        --muted:#a6adc8;
+        --border:#313244;
+        --accent:#89b4fa;
+        --accent-2:#cba6f7;
+        --shadow: 0 6px 24px rgba(0,0,0,.25);
+      }
+    }
+
+    /* Base layout */
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--bg);color:var(--text)}
+    a{color:var(--accent); text-underline-offset: 3px}
+    a:hover{ text-decoration: underline }
+    :focus-visible{ outline: 3px solid var(--accent); outline-offset: 2px; border-radius: 6px }
+
+    /* Sticky top bar */
+    .topbar{
+      position: sticky; top:0; z-index: 999;
+      backdrop-filter: saturate(120%) blur(6px);
+      background: color-mix(in oklab, var(--bg) 85%, transparent);
+      border-bottom:1px solid var(--border);
+    }
+    .topbar-inner{
+      max-width: var(--max); margin: 0 auto;
+      padding: 12px var(--pad);
+      display: flex; align-items: center; gap: 16px;
+    }
+    .brand{
+      display:flex; align-items:center; gap:12px; margin-right:auto;
+      font-weight: 600; letter-spacing:.2px;
+    }
+    .brand img{
+      width:40px; height:40px; object-fit:cover; border-radius: 50%;
+      border:1px solid var(--border);
+    }
+    nav a{
+      color: var(--muted); text-decoration:none; padding:6px 8px; border-radius:10px;
+    }
+    nav a:hover{ color: var(--text); background: var(--surface) }
+
+    /* Header hero */
+    header{max-width:var(--max); margin: 28px auto 0; padding: 28px var(--pad) 8px}
+    h1{margin:0 0 6px; font-size: clamp(1.8rem, 2.2vw + 1.2rem, 2.4rem)}
+    .sub{color:var(--muted); margin: 4px 0 0}
+
+    /* Main content */
+    main{max-width:var(--max); margin: 0 auto; padding: 0 var(--pad) 60px}
+    section{scroll-margin-top: 80px; margin-top: 28px}
+    .grid{display:grid; gap:16px}
+    @media (min-width:760px){ .grid{ grid-template-columns: repeat(2, 1fr) } }
+
+    .card{
+      background: var(--surface);
+      border:1px solid var(--border);
+      border-radius:16px;
+      padding:18px 20px;
+      box-shadow: var(--shadow);
+      transition: transform .12s ease, border-color .12s ease;
+    }
+    .card:hover{ transform: translateY(-2px); border-color: var(--accent) }
+
+    /* Footer */
+    footer{max-width:var(--max); margin: 10px auto 40px; padding: 16px var(--pad); color:var(--muted) }
   </style>
-
-  <!-- Optional: Person schema for SEO -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"Person",
-    "name":"Santiago Quiroga Álvarez",
-    "url":"https://YOURUSERNAME.github.io/",
-    "email":"mailto:saqu6490@colorado.edu",
-    "alumniOf":{"@type":"CollegeOrUniversity","name":"University of Colorado Boulder"},
-    "knowsAbout":["C++","x86-64 Assembly","Python","R","SolidWorks"]
-  }
-  </script>
 </head>
-
 <body>
-  <header>
+  <!-- Skip link for accessibility -->
+  <a href="#main" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden;"
+     onfocus="this.style.left='16px';this.style.top='16px';this.style.width='auto';this.style.height='auto';this.style.background='var(--surface)';this.style.padding='8px 12px';this.style.borderRadius='8px';this.style.border='1px solid var(--border)';">
+     Skip to content
+  </a>
+
+  <!-- Sticky top navigation -->
+  <div class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="#top" aria-label="Home">
+        <!-- Headshot in nav (small circle) -->
+        <img src="/assets/headshot.jpg" alt="Portrait of Santiago Quiroga">
+        <span>🌸🐳 Santiago Quiroga 👋</span>
+      </a>
+      <nav>
+        <a href="#projects">Projects</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+        <a href="/resume.pdf">Resume</a>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Header / hero -->
+  <header id="top">
     <h1>Santiago Quiroga Álvarez</h1>
-    <p>CU Boulder student • Portfolio & projects</p>
-    <nav>
-      <a href="#projects">Projects</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-      <a href="/resume.pdf">Resume</a>
-    </nav>
+    <p class="sub">CU Boulder student • Portfolio & projects</p>
   </header>
-  <main>
-    <section id="projects">
-      <h2>Projects</h2>
-      <div class="card">
-        <h3>Cool Project</h3>
-        <p>One-liner about what it does and your role.</p>
-        <p><a href="https://github.com/USERNAME/PROJECT">Code</a> · <a href="#">Demo</a></p>
+
+  <main id="main">
+    <!-- Larger headshot on page (optional) -->
+    <section aria-labelledby="about">
+      <div class="grid" style="align-items:start">
+        <div>
+          <h2 id="projects">Projects</h2>
+          <div class="card">
+            <h3>Cool Project</h3>
+            <p>One-liner about what it does and your role.</p>
+            <p><a href="https://github.com/USERNAME/PROJECT">Code</a> · <a href="#">Demo</a></p>
+          </div>
+          <!-- Add more .card blocks as needed -->
+        </div>
+
+        <aside>
+          <img src="/assets/headshot.jpg" alt="Portrait of Santiago Quiroga"
+               style="width:100%;max-width:320px;border-radius:18px;border:1px solid var(--border);box-shadow:var(--shadow)">
+        </aside>
       </div>
     </section>
-    <section id="about">
-      <h2>About</h2>
+
+    <section>
+      <h2 id="about">About</h2>
       <p>Santiago Quiroga is an undergraduate student at the University of Colorado Boulder pursuing studies in STEM with a focus on Mechanical Engineering, Computer Science, and Data Science. He is passionate about applying science and technology to create practical solutions that improve everyday life.</p>
-        <p>Santiago has hands-on experience in programming with C++, AT&T x86-64 Assembly, Python, R, and HTML, and is a Certified SolidWorks Associate. His academic background includes coursework in Calculus, Physics, Data Structures, and Statics, supported by additional training in finance and entrepreneurship through Wall Street Prep and Yale’s EXPLO program.</p>
-
-        <p>Professionally, Santiago has worked with start-ups and small firms in both the U.S. and Mexico. At Cabin, an ecologically conscious prefabricated housing company, he integrated IoT prototypes into smart homes and implemented SEO strategies that increased web traffic by 50%. At Skyryse, he contributed to FlightOS, the world’s first universal flight deck, by researching rendering and navigational technologies for real-time airspace visualization.</p>
-
-    <p>Multilingual and internationally minded, Santiago is fluent in English and Spanish, conversational in French, and a beginner in Japanese. He holds U.S., French, and Mexican nationalities and is comfortable working in multilingual, multicultural environments. Outside of academics and work, Santiago is an accomplished sailor — having represented Mexico in international Laser championships — and an outdoor enthusiast who enjoys mountain biking, snowboarding, and reading science fiction.</p>
+      <p>Santiago has hands-on experience in programming with C++, AT&T x86-64 Assembly, Python, R, and HTML, and is a Certified SolidWorks Associate. His academic background includes coursework in Calculus, Physics, Data Structures, and Statics, supported by additional training in finance and entrepreneurship through Wall Street Prep and Yale’s EXPLO program.</p>
+      <p>Professionally, Santiago has worked with start-ups and small firms in both the U.S. and Mexico. At Cabin, an ecologically conscious prefabricated housing company, he integrated IoT prototypes into smart homes and implemented SEO strategies that increased web traffic by 50%. At Skyryse, he contributed to FlightOS, the world’s first universal flight deck, by researching rendering and navigational technologies for real-time airspace visualization.</p>
+      <p>Multilingual and internationally minded, Santiago is fluent in English and Spanish, conversational in French, and a beginner in Japanese. He holds U.S., French, and Mexican nationalities and is comfortable working in multilingual, multicultural environments. Outside of academics and work, Santiago is an accomplished sailor — having represented Mexico in international Laser championships — and an outdoor enthusiast who enjoys mountain biking, snowboarding, and reading science fiction.</p>
     </section>
-    <section id="contact">
-      <h2>Contact</h2>
-      <p><a href="mailto:saqu6490@colorado.edu">saqu6490@colorado.edu</a> · <a href="https://www.linkedin.com/in/...">LinkedIn</a></p>
+
+    <section>
+      <h2 id="contact">Contact</h2>
+      <p><a href="mailto:saqu6490@colorado.edu">saqu6490@colorado.edu</a> · <a href="https://www.linkedin.com/in/...">LinkedIn</a> · <a href="https://github.com/YOURUSERNAME">GitHub</a></p>
     </section>
   </main>
+
   <footer>
     © <span id="y"></span> Santiago Quiroga Álvarez
   </footer>
