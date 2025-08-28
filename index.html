@@ -3,20 +3,50 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Your Name — Portfolio</title>
-  <meta name="description" content="Portfolio of Your Name: projects, resume, and contact." />
+  <title>Santiago Quiroga — Portfolio</title>
+  <meta name="description" content="Portfolio of Santiago Quiroga: CU Boulder student showcasing projects, resume, and contact." />
+
+  <!-- Open Graph / Twitter for nice link previews -->
+  <meta property="og:title" content="Santiago Quiroga — Portfolio">
+  <meta property="og:description" content="Projects, resume, and contact information.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://YOURUSERNAME.github.io/">
+  <meta property="og:image" content="/assets/preview.png">
+  <meta name="twitter:card" content="summary_large_image">
+
   <style>
-    :root{--max:900px;--pad:20px;font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif}
-    body{margin:0;background:#0b0d12;color:#e8ebf0}
-    header{padding:60px var(--pad) 20px;max-width:var(--max);margin:auto}
-    h1{margin:0 0 6px;font-size:2.25rem}
-    nav a{margin-right:14px;color:#9ab; text-decoration:none}
-    main{max-width:var(--max);margin:20px auto;padding:0 var(--pad)}
-    .card{background:#121621;border:1px solid #1e2635;border-radius:16px;padding:18px 20px;margin:14px 0}
-    a{color:#8bd3ff}
-    footer{max-width:var(--max);margin:40px auto;padding:20px var(--pad);color:#9ab}
+    :root { --max: 900px; --pad: 20px; font-family: system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif }
+    html { scroll-behavior: smooth }
+    body { margin: 0; background: #0b0d12; color: #e8ebf0; line-height: 1.6 }
+    a { color: #8bd3ff; text-underline-offset: 2px }
+    a:hover { text-decoration: underline }
+    :focus-visible { outline: 3px solid #8bd3ff; outline-offset: 2px; border-radius: 6px }
+    header { padding: 60px var(--pad) 20px; max-width: var(--max); margin: auto }
+    h1 { margin: 0 0 6px; font-size: 2.25rem }
+    nav a { margin-right: 14px; color: #9ab; text-decoration: none }
+    nav a:hover { color: #cde }
+    main { max-width: var(--max); margin: 20px auto; padding: 0 var(--pad) }
+    .card { background: #121621; border: 1px solid #1e2635; border-radius: 16px; padding: 18px 20px; margin: 14px 0; transition: transform .1s ease, border-color .1s }
+    .card:hover { transform: translateY(-1px); border-color: #30405a }
+    footer { max-width: var(--max); margin: 40px auto; padding: 20px var(--pad); color: #9ab }
+    /* optional: nicer section spacing */
+    section { scroll-margin-top: 70px; }
   </style>
+
+  <!-- Optional: Person schema for SEO -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Person",
+    "name":"Santiago Quiroga Álvarez",
+    "url":"https://YOURUSERNAME.github.io/",
+    "email":"mailto:saqu6490@colorado.edu",
+    "alumniOf":{"@type":"CollegeOrUniversity","name":"University of Colorado Boulder"},
+    "knowsAbout":["C++","x86-64 Assembly","Python","R","SolidWorks"]
+  }
+  </script>
 </head>
+
 <body>
   <header>
     <h1>Santiago Quiroga Álvarez</h1>
