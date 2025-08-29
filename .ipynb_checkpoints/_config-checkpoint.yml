@@ -1,4 +1,39 @@
-title: Santiago Quiroga Álvarez
-description: CU Boulder portfolio
-url: "https://santiquirogaalvarez.github.io/"
-baseurl: ""
+# _config.yml
+title: "Santiago Quiroga Álvarez"
+description: "CU Boulder portfolio"
+url: "https://santiquirogaalvarez.github.io"   # no trailing slash
+baseurl: ""                                     # user site => keep empty
+
+# Markdown & permalinks
+markdown: kramdown
+kramdown:
+  input: GFM
+permalink: pretty
+
+# Build (keep theme off since you’re using custom layout/styles)
+theme: null
+plugins:
+  - jekyll-seo-tag           # built-in on GitHub Pages
+  - jekyll-sitemap           # optional, also built-in
+
+# Site metadata for SEO/social cards
+author:
+  name: "Santiago Quiroga Álvarez"
+social:
+  github: "SantiQuirogaAlvarez"
+  linkedin: "REPLACE_ME"
+  email: "saqu6490@colorado.edu"
+
+# Files/folders Jekyll shouldn’t process
+exclude:
+  - node_modules
+  - README.md
+  - package.json
+  - package-lock.json
+
+# Defaults (optional)
+defaults:
+  - scope:
+      path: ""
+    values:
+      layout: "default"

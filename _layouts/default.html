@@ -5,8 +5,21 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{{ page.title | default: site.title }}</title>
   <meta name="description" content="{{ page.description | default: site.description }}">
+
+  <!-- Let browsers know we support dark & light -->
+  <meta name="color-scheme" content="dark light">
+
+  <!-- Dynamic tab color (nice on mobile) -->
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#eff1f5">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)"  content="#11111b">
+
+  <!-- Your consolidated CSS -->
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/site.css">
+
+  <!-- SEO tags (works because we enabled jekyll-seo-tag) -->
+  {% seo %}
 </head>
+
 <body>
   <!-- Skip link -->
   <a class="skip" href="#main">Skip to content</a>
