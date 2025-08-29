@@ -1,48 +1,21 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Resume — Santiago Quiroga</title>
-  <meta name="description" content="View and download the resume of Santiago Quiroga." />
-  <style>
-    :root{--max:960px;--pad:20px;font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif}
-    body{margin:0;background:#0b0d12;color:#e8ebf0;line-height:1.6}
-    a{color:#8bd3ff}
-    header,main,footer{max-width:var(--max);margin:0 auto;padding:16px var(--pad)}
-    .actions{display:flex;gap:12px;align-items:center;margin:10px 0 16px}
-    .btn{display:inline-block;padding:10px 14px;border:1px solid #1e2635;border-radius:10px;background:#121621}
-    .btn:hover{border-color:#30405a}
-    .frame{width:100%;height:80vh;border:1px solid #1e2635;border-radius:12px;overflow:hidden;background:#121621}
-  </style>
-</head>
-<body>
-  <header>
-    <a href="/" class="btn" aria-label="Back to home">← Back</a>
-    <h1 style="margin:10px 0 0">Resume</h1>
-    <p class="actions">
-      <a class="btn" href="/assets/resume.pdf" download>Download PDF</a>
-      <span style="color:#9ab">Tip: you can also use your browser’s print/download toolbar in the viewer.</span>
+---
+layout: default
+title: Resume — Santiago Quiroga
+description: View and download the resume of Santiago Quiroga.
+---
+
+<h1 class="mt-0">Resume</h1>
+
+<p class="actions">
+  <a class="btn" href="{{ site.baseurl }}/assets/resume.pdf" download>Download PDF</a>
+  <span class="muted">Tip: you can also use the browser’s toolbar in the viewer.</span>
+</p>
+
+<div class="frame">
+  <object data="{{ site.baseurl }}/assets/resume.pdf" type="application/pdf" width="100%" height="100%">
+    <p style="padding:12px">
+      Your browser can’t display PDFs inline.
+      <a href="{{ site.baseurl }}/assets/resume.pdf">Open the PDF</a>.
     </p>
-  </header>
-
-  <main>
-    <!-- Inline PDF viewer -->
-    <div class="frame">
-      <!-- Most browsers will render this directly -->
-      <object data="/assets/resume.pdf" type="application/pdf" width="100%" height="100%">
-        <!-- Fallback: show link if the browser can’t embed PDFs -->
-        <p style="padding:12px">
-          Your browser can’t display PDFs inline.
-          <a href="/assets/resume.pdf">Open the PDF</a>.
-        </p>
-      </object>
-    </div>
-  </main>
-
-  <footer>
-    <p>© <span id="y"></span> Santiago Quiroga</p>
-  </footer>
-  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
-</body>
-</html>
+  </object>
+</div>

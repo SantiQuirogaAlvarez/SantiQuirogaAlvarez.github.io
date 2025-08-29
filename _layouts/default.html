@@ -4,15 +4,21 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>{{ page.title | default: site.title }}</title>
+  <meta name="description" content="{{ page.description | default: site.description }}">
   <link rel="stylesheet" href="{{ site.baseurl }}/assets/css/site.css">
 </head>
 <body>
+  <!-- Skip link -->
+  <a class="skip" href="#main">Skip to content</a>
+
   {% include nav.html %}
-  <main id="main">
+
+  <main id="main" class="site-main container">
     {{ content }}
   </main>
-  <footer style="max-width:960px;margin:40px auto;padding:0 20px;color:#9ab">
-    © <span id="y"></span> {{ site.title }}
+
+  <footer class="site-footer">
+    © <span id="y"></span> {{ site.title | default: "Santiago Quiroga" }}
   </footer>
   <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
 </body>

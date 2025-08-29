@@ -1,42 +1,30 @@
-<!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Projects — Santiago Quiroga</title>
-  <meta name="description" content="Selected projects by Santiago Quiroga." />
-  <style>
-    :root{--max:960px;--pad:20px;font-family:system-ui,-apple-system,Segoe UI,Roboto,Inter,Arial,sans-serif}
-    body{margin:0;background:#0b0d12;color:#e8ebf0;line-height:1.6}
-    a{color:#8bd3ff}
-    main{max-width:var(--max);margin:0 auto;padding:32px var(--pad)}
-    .grid{display:grid;gap:16px}
-    @media(min-width:760px){ .grid{ grid-template-columns: repeat(2, 1fr) } }
-    .card{background:#121621;border:1px solid #1e2635;border-radius:16px;padding:18px 20px}
-    .card:hover{border-color:#30405a}
-  </style>
-</head>
-<body>
-  <main>
-    <a href="/" aria-label="Back to home">← Back</a>
-    <h1>Projects</h1>
+---
+layout: default
+title: Projects — Santiago Quiroga
+description: Selected projects by Santiago Quiroga.
+---
 
-    <div class="grid">
-      <div class="card">
-        <h3>IoT Smart Cabin</h3>
-        <p>Prototyped sensor + control system to convert prefabs into smart homes.</p>
-        <p><strong>Tech:</strong> HTML/CSS, IoT Devices</p>
-        <p><a href="https://github.com/YOURUSER/smart-cabin">Code</a> · <a href="#" target="_blank" rel="noopener">Demo</a></p>
-      </div>
+<h1 class="mt-0">Projects</h1>
 
-      <!-- Add more .card blocks -->
-      <div class="card">
-        <h3>Terminal Calendar Schedule</h3>
-        <p>C++ Calendar and Organization utility for college.</p>
-        <p><strong>Tech:</strong> C++</p>
-        <p> · <a href="https://github.com/SantiQuirogaAlvarez/smart-cabin">Code</a> · </p>
-      </div>
-    </div>
-  </main>
-</body>
-</html>
+<div class="grid grid--two mt-2">
+  <div class="card">
+    <h3>IoT Smart Cabin</h3>
+    <p>Prototyped sensor + control system to convert prefabs into smart homes.</p>
+    <p><strong>Tech:</strong> C++/Arduino, MQTT, REST, HTML</p>
+    <p>
+      <a href="https://github.com/YOURUSER/smart-cabin" target="_blank" rel="noopener">Code</a>
+      · <a href="#" target="_blank" rel="noopener">Demo</a>
+    </p>
+  </div>
+
+  <div class="card">
+    <h3>Terminal Calendar Schedule</h3>
+    <p>C++ calendar and organization utility for college.</p>
+    <p><strong>Tech:</strong> C++</p>
+    <p>
+      <a href="https://github.com/SantiQuirogaAlvarez/smart-cabin" target="_blank" rel="noopener">Code</a>
+    </p>
+  </div>
+
+  <!-- Add more .card blocks as needed -->
+</div>
