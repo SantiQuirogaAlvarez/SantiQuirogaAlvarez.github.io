@@ -25,10 +25,10 @@ jobs:
 
       - name: Ensure GitHub Pages deps
         run: |
-          test -f Gemfile || cat > Gemfile <<'GEM'
-          source "https://rubygems.org"
-          gem "github-pages", group: :jekyll_plugins
-          GEM
+          if [ ! -f Gemfile ]; then
+            echo 'source "https://rubygems.org"' > Gemfile
+            echo 'gem "github-pages", group: :jekyll_plugins' >> Gemfile
+          fi
           bundle install --path vendor/bundle
 
       - name: Sanity: show structure
@@ -42,7 +42,7 @@ jobs:
           ls -la assets/css || true
 
       - name: Jekyll doctor
-        run: bundle exec jekyll doctor || true   # don’t fail the job, just print hints
+        run: bundle exec jekyll doctor || true   # print hints but don’t fail
 
       - name: Build site with baseurl=/beta (verbose)
         env:
