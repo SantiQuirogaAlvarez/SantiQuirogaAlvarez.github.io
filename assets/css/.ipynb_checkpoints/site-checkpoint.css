@@ -1,11 +1,18 @@
 /* =========================================
    site.css — dark-first with light fallback
+   polished header/nav, links, accents
    ========================================= */
 
 /* Vars (dark default) */
 :root{
   --bg:#11111b; --surface:#181825; --border:#313244;
-  --text:#cdd6f4; --muted:#a6adc8; --accent:#89b4fa;
+  --text:#cdd6f4; --muted:#a6adc8;
+
+  /* Accents */
+  --accent:#89b4fa;   /* blue */
+  --accent-2:#cba6f7; /* mauve */
+  --accent-3:#f38ba8; /* red-pink */
+
   --max:960px; --pad:20px;
   --radius:16px; --shadow:0 6px 24px rgba(0,0,0,.25);
   --font: system-ui, -apple-system, Segoe UI, Roboto, Inter, Arial, sans-serif;
@@ -16,7 +23,10 @@
 @media (prefers-color-scheme: light){
   :root{
     --bg:#eff1f5; --surface:#e6e9ef; --border:#ccd0da;
-    --text:#4c4f69; --muted:#6c6f85; --accent:#8caaee;
+    --text:#4c4f69; --muted:#6c6f85;
+    --accent:#8caaee;    /* blue */
+    --accent-2:#babbf1;  /* lavender */
+    --accent-3:#dd7878;  /* red */
     --shadow:0 6px 20px rgba(17,17,17,.08);
   }
 }
@@ -31,18 +41,46 @@ body{
   -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
 }
 img{ max-width:100%; height:auto; display:block; }
-a{ color:var(--accent); text-underline-offset:3px; }
-a:hover{ text-decoration:underline; }
-:focus-visible{ outline:3px solid var(--accent); outline-offset:2px; border-radius:8px; }
+
+/* Links: subtle color lift, underline on hover */
+a{
+  color:var(--accent);
+  text-decoration:none;
+  text-underline-offset:3px;
+  transition: color .15s ease, text-decoration-color .15s ease;
+}
+a:hover{
+  color:var(--accent-2);
+  text-decoration:underline;
+}
+
+/* Focus */
+:focus-visible{
+  outline:3px solid var(--accent);
+  outline-offset:2px;
+  border-radius:8px;
+}
 
 .container{ max-width:var(--max); margin:0 auto; padding:0 var(--pad); }
 
-/* Sticky top bar */
+/* =========================
+   Sticky top bar (header)
+   ========================= */
 .topbar{
-  position:sticky; top:0; z-index:999;
-  border-bottom:1px solid var(--border);
-  background: color-mix(in oklab, var(--bg) 85%, transparent);
-  backdrop-filter:saturate(120%) blur(6px);
+  position: sticky; top: 0; z-index: 999;
+  border-bottom: 1px solid var(--border);
+
+  /* Subtle tinted surface + backdrop blur */
+  background:
+    linear-gradient(90deg,
+      color-mix(in oklab, var(--surface) 88%, transparent) 0%,
+      color-mix(in oklab, var(--surface) 88%, transparent) 50%,
+      color-mix(in oklab, var(--surface) 88%, transparent) 100%),
+    color-mix(in oklab, var(--bg) 85%, transparent);
+  backdrop-filter: saturate(120%) blur(6px);
+
+  /* Soft bottom shadow to separate from content */
+  box-shadow: 0 2px 10px rgba(0,0,0,.12);
 }
 .topbar-inner{
   max-width:var(--max); margin:0 auto; padding:12px var(--pad);
@@ -56,46 +94,137 @@ a:hover{ text-decoration:underline; }
   width:40px; height:40px; object-fit:cover;
   border-radius:50%; border:1px solid var(--border);
 }
-.brand span{ font-size:var(--brand-size); font-weight:600; letter-spacing:.2px; }
-.topbar nav a{
-  font-size:var(--nav-size); color:var(--muted);
-  text-decoration:none; padding:6px 8px; border-radius:10px;
+.brand span{
+  font-size:var(--brand-size); font-weight:600; letter-spacing:.2px;
 }
-.topbar nav a:hover{ color:var(--text); background:var(--surface); }
 
-/* Header & main */
-header.site-header{ max-width:var(--max); margin:28px auto 0; padding:28px var(--pad) 8px; }
+/* Nav links */
+.topbar nav{ display:flex; gap:6px; }
+.topbar nav a{
+  font-size:var(--nav-size);
+  color:var(--muted);
+  text-decoration:none;
+  padding:6px 10px;
+  border-radius:10px;
+  transition: color .15s ease, background-color .15s ease;
+}
+.topbar nav a:hover{
+  color:var(--text);
+  background: color-mix(in oklab, var(--surface) 85%, transparent);
+}
+/* Active/current page helper (set via aria-current="page" or .is-active) */
+.topbar nav a[aria-current="page"],
+.topbar nav a.is-active{
+  color:var(--text);
+  background:
+    linear-gradient(180deg,
+      color-mix(in oklab, var(--accent) 14%, var(--surface)) 0%,
+      color-mix(in oklab, var(--accent) 8%,  var(--surface)) 100%);
+  border:1px solid color-mix(in oklab, var(--accent) 45%, var(--border));
+}
+
+/* =========================
+   Header & main
+   ========================= */
+header.site-header{
+  max-width:var(--max); margin:28px auto 0; padding:28px var(--pad) 8px;
+  position:relative;
+}
+/* Decorative gradient wash behind H1 (no images) */
+header.site-header::before{
+  content:""; position:absolute; inset:auto 20px -8px 20px; height:10px;
+  border-radius:8px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  filter: blur(18px); opacity:.25; pointer-events:none;
+}
 h1{ margin:0 0 6px; font-size:var(--h1-size); }
 .sub{ color:var(--muted); margin:4px 0 0; }
+
 main.site-main{ max-width:var(--max); margin:0 auto; padding:0 var(--pad) 60px; }
 section{ scroll-margin-top:80px; margin-top:28px; }
 
-/* Grid & cards */
+/* Section headers with accent underline */
+h2{
+  position: relative; padding-bottom: .25rem; margin-top: 1.5rem;
+}
+h2::after{
+  content: ""; position: absolute; left: 0; bottom: 0;
+  width: 72px; height: 3px; border-radius: 2px;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+}
+
+/* =========================
+   Grid & cards
+   ========================= */
 .grid{ display:grid; gap:16px; }
 @media (min-width:760px){ .grid--two{ grid-template-columns:repeat(2,1fr); } }
+
 .card{
   background:var(--surface); border:1px solid var(--border); border-radius:var(--radius);
   padding:18px 20px; box-shadow:var(--shadow);
-  transition:transform .12s ease, border-color .12s ease;
+  transition:transform .12s ease, border-color .12s ease, box-shadow .12s ease;
 }
-.card:hover{ transform:translateY(-2px); border-color:var(--accent); }
+.card:hover{
+  transform:translateY(-2px);
+  border-color: color-mix(in oklab, var(--accent-2) 60%, var(--border));
+  box-shadow: 0 10px 28px rgba(0,0,0,.28);
+}
 
-/* Buttons */
+/* =========================
+   Buttons (keeps OG behavior)
+   ========================= */
 .btn{
   display:inline-block; padding:10px 14px; border:1px solid var(--border);
   border-radius:10px; background:var(--surface); color:var(--text); text-decoration:none; cursor:pointer;
+  transition: transform .06s ease, border-color .15s ease, box-shadow .15s ease, background-color .15s ease, color .15s ease;
+  box-shadow: 0 1px 0 rgba(0,0,0,.12);
 }
-.btn:hover{ border-color: color-mix(in oklab, var(--accent) 60%, var(--border)); }
+.btn:hover{
+  border-color: var(--accent); /* fallback if color-mix unsupported */
+  border-color: color-mix(in oklab, var(--accent) 60%, var(--border));
+  transform: translateY(-1px);
+}
+.btn:active{
+  transform: translateY(0);
+  box-shadow: inset 0 1px 2px rgba(0,0,0,.25);
+}
+.btn:focus-visible{
+  outline:0;
+  box-shadow:
+    0 0 0 2px color-mix(in oklab, var(--accent) 35%, transparent),
+    0 0 0 4px color-mix(in oklab, var(--accent) 20%, transparent);
+}
 .actions{ display:flex; gap:12px; align-items:center; margin:10px 0 16px; }
 .muted{ color:var(--muted); }
 
-/* PDF viewer */
+/* Optional button variants (use if desired) */
+.btn--primary{
+  background:
+    linear-gradient(180deg,
+      color-mix(in oklab, var(--accent) 22%, var(--surface)) 0%,
+      color-mix(in oklab, var(--accent) 10%, var(--surface)) 100%);
+  border-color: color-mix(in oklab, var(--accent) 55%, var(--border));
+}
+.btn--ghost{
+  background: transparent;
+  color: var(--accent);
+  border-color: color-mix(in oklab, var(--accent) 35%, var(--border));
+}
+.btn--ghost:hover{
+  background: color-mix(in oklab, var(--accent) 7%, transparent);
+}
+
+/* =========================
+   PDF viewer
+   ========================= */
 .frame{
   width:100%; height:80vh; background:var(--surface);
   border:1px solid var(--border); border-radius:12px; overflow:hidden; box-shadow:var(--shadow);
 }
 
-/* Forms */
+/* =========================
+   Forms
+   ========================= */
 .form{
   background:var(--surface); border:1px solid var(--border); border-radius:12px; padding:16px;
   display:grid; gap:12px;
@@ -109,10 +238,14 @@ label{ font-weight:600; color: color-mix(in oklab, var(--text) 85%, var(--muted)
 @media (min-width:640px){ .row{ grid-template-columns:1fr 1fr; } }
 .hp{ position:absolute !important; left:-9999px !important; }
 
-/* Footer */
+/* =========================
+   Footer
+   ========================= */
 .site-footer{ max-width:var(--max); margin:10px auto 40px; padding:16px var(--pad); color:var(--muted); }
 
-/* Skip link */
+/* =========================
+   Skip link
+   ========================= */
 .skip{
   position:absolute; left:-9999px; top:auto; width:1px; height:1px; overflow:hidden;
 }
