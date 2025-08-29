@@ -1,0 +1,64 @@
+name: Deploy beta to /beta
+
+permissions:
+  contents: write   # allow the workflow to push to main
+
+on:
+  push:
+    branches: [ beta ]
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Ruby (GitHub Pages-compatible)
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.1'        # Pages uses Ruby 3.1.x
+          bundler-cache: true
+
+      - name: Ensure GitHub Pages deps
+        run: |
+          if [ ! -f Gemfile ]; then
+            echo 'source "https://rubygems.org"' > Gemfile
+            echo 'gem "github-pages", group: :jekyll_plugins' >> Gemfile
+          fi
+          bundle install --path vendor/bundle
+
+      - name: Sanity: show structure
+        run: |
+          ls -la
+          echo "---- layouts ----"
+          ls -la _layouts || true
+          echo "---- includes ----"
+          ls -la _includes || true
+          echo "---- assets/css ----"
+          ls -la assets/css || true
+
+      - name: Jekyll doctor
+        run: bundle exec jekyll doctor || true   # print hints but don’t fail
+
+      - name: Build site with baseurl=/beta (verbose)
+        env:
+          JEKYLL_ENV: production
+        run: bundle exec jekyll build --baseurl "/beta" --destination "_site" --trace --verbose
+
+      - name: Ensure _site exists
+        run: test -d _site && echo "Build ok" || (echo "_site missing"; exit 1)
+
+      - name: Deploy _site into /beta folder of main
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: main
+          folder: _site
+          target-folder: beta
+          clean: true
+          single-commit: true
+          commit-message: "Deploy beta from ${{ github.sha }}"
+          token: ${{ secrets.GITHUB_TOKEN }}
