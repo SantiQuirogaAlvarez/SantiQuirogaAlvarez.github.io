@@ -1,0 +1,39 @@
+name: Deploy beta to /beta
+
+on:
+  push:
+    branches: [ beta ]
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: '3.3'
+          bundler-cache: true
+
+      - name: Ensure GitHub Pages deps
+        run: |
+          test -f Gemfile || printf 'source "https://rubygems.org"\ngem "github-pages", group: :jekyll_plugins\n' > Gemfile
+          bundle install --path vendor/bundle
+
+      - name: Build site with baseurl=/beta
+        run: bundle exec jekyll build --baseurl "/beta" --destination "_site"
+
+      - name: Deploy _site into /beta folder of main
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: main          # deploy into main branch…
+          folder: _site         # …the built output…
+          target-folder: beta   # …goes under /beta/
+          clean: true
+          commit-message: "Deploy beta from ${{ github.sha }}"
+          token: ${{ secrets.GITHUB_TOKEN }}
