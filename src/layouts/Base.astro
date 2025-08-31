@@ -1,5 +1,5 @@
 ---
-import "../styles/global.css"; // <- loads Tailwind + your Catppuccin tokens
+import "../styles/global.css"; // Tailwind + Catppuccin tokens
 const { title = "Santiago Quiroga — Portfolio", description = "" } = Astro.props;
 ---
 <html lang="en" class="h-full">
@@ -9,7 +9,7 @@ const { title = "Santiago Quiroga — Portfolio", description = "" } = Astro.pro
     <title>{title}</title>
     <meta name="description" content={description} />
 
-    <!-- Ensure correct theme on first paint (no flash) -->
+    <!-- Set theme before paint -->
     <script is:inline>
       (() => {
         const saved = localStorage.getItem('theme');
@@ -18,24 +18,32 @@ const { title = "Santiago Quiroga — Portfolio", description = "" } = Astro.pro
         if (dark) document.documentElement.classList.add('dark');
       })();
     </script>
+  
+    <!-- Font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
 
-    <!-- Favicon -->
-    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
-    <link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
-    <link rel="icon" href="/assets/favicon-16.png" sizes="16x16" type="image/png">
-    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
-    <link rel="mask-icon" href="/assets/favicon.svg" color="#cba6f7">
+
   </head>
 
-  <!-- 👇 These Tailwind classes read your CSS variables from global.css -->
   <body class="min-h-screen antialiased bg-[var(--bg)] text-[var(--text)]">
-    <header class="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--surface)]/90 backdrop-blur">
+    <!-- Accessible skip link -->
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only fixed left-3 top-3 z-50 rounded-lg border border-[var(--border)]
+             bg-[var(--surface)] px-3 py-2 text-sm"
+    >
+      Skip to content
+    </a>
+
+    <header class="sticky top-0 z-50 border-b border-[var(--border)] header-bg">
       <div class="mx-auto max-w-4xl px-4">
         <slot name="nav" />
       </div>
     </header>
 
-    <main class="mx-auto max-w-4xl px-4 py-10">
+    <main id="main" class="mx-auto max-w-4xl px-4 py-10">
       <slot />
     </main>
 
@@ -44,5 +52,14 @@ const { title = "Santiago Quiroga — Portfolio", description = "" } = Astro.pro
         <slot name="footer" />
       </div>
     </footer>
+
+    <!-- Toggle stronger header shadow after slight scroll -->
+    <script is:inline>
+      const onScroll = () => {
+        document.body.classList.toggle('scrolled', window.scrollY > 4);
+      };
+      addEventListener('scroll', onScroll, { passive: true });
+      onScroll();
+    </script>
   </body>
 </html>
