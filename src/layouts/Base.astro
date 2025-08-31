@@ -1,17 +1,35 @@
 ---
-import "../styles/global.css";
-const { title = "Santiago Quiroga — Portfolio", description = "Portfolio Website for Santiago Quiroga" } = Astro.props;
+import "../styles/global.css"; // <- loads Tailwind + your Catppuccin tokens
+const { title = "Santiago Quiroga — Portfolio", description = "" } = Astro.props;
 ---
-<html lang="en">
+<html lang="en" class="h-full">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>{title}</title>
     <meta name="description" content={description} />
-    <link rel="icon" href="/favicon.ico" />
+
+    <!-- Ensure correct theme on first paint (no flash) -->
+    <script is:inline>
+      (() => {
+        const saved = localStorage.getItem('theme');
+        const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const dark = saved ? saved === 'dark' : systemDark;
+        if (dark) document.documentElement.classList.add('dark');
+      })();
+    </script>
+
+    <!-- Favicon -->
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="/assets/favicon-32.png" sizes="32x32" type="image/png">
+    <link rel="icon" href="/assets/favicon-16.png" sizes="16x16" type="image/png">
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+    <link rel="mask-icon" href="/assets/favicon.svg" color="#cba6f7">
   </head>
-  <body class="min-h-screen bg-white text-zinc-900 antialiased">
-    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur border-b">
+
+  <!-- 👇 These Tailwind classes read your CSS variables from global.css -->
+  <body class="min-h-screen antialiased bg-[var(--bg)] text-[var(--text)]">
+    <header class="sticky top-0 z-50 border-b border-[var(--border)] bg-[var(--surface)]/90 backdrop-blur">
       <div class="mx-auto max-w-4xl px-4">
         <slot name="nav" />
       </div>
@@ -21,7 +39,7 @@ const { title = "Santiago Quiroga — Portfolio", description = "Portfolio Websi
       <slot />
     </main>
 
-    <footer class="border-t py-8 mt-16">
+    <footer class="border-t border-[var(--border)] py-8 mt-16">
       <div class="mx-auto max-w-4xl px-4">
         <slot name="footer" />
       </div>

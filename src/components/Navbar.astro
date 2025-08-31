@@ -1,4 +1,6 @@
 ---
+import ThemeToggle from "./ThemeToggle.astro";
+
 const links = [
   { href: "/", label: "Home" },
   { href: "/projects", label: "Projects" },
@@ -8,10 +10,17 @@ const links = [
 const current = Astro.url.pathname.replace(/\/+$/, "") || "/";
 ---
 <nav class="flex items-center gap-6 h-14">
-  <a href="/" class="font-semibold">Santiago Quiroga</a>
-  <div class="ml-auto flex gap-4 text-sm">
+  <a href="/" class="font-semibold text-[var(--text)]">Santiago Quiroga Álvarez</a>
+
+  <div class="ml-auto flex items-center gap-4 text-sm">
     {links.map(l => (
-      <a href={l.href} class={`hover:underline ${current===l.href ? "font-semibold" : ""}`}>{l.label}</a>
+      <a
+        href={l.href}
+        class={`${current===l.href
+          ? "font-semibold text-[var(--text)]"
+          : "text-[var(--muted)] hover:text-[var(--text)]"}`}
+      >{l.label}</a>
     ))}
+    <ThemeToggle />
   </div>
 </nav>

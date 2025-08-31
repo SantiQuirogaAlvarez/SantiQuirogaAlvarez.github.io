@@ -1,0 +1,4 @@
+on:
+  push:
+    branches: [main]     # <— make sure this is main for go-live
+  workflow_dispatch:
