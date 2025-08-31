@@ -1,0 +1,22 @@
+---
+import Base from "../layouts/Base.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+---
+<Base title="Projects — Santiago Quiroga" description="Selected projects and write-ups.">
+  <Fragment slot="nav"><Navbar/></Fragment>
+
+  <h1 class="text-3xl md:text-4xl font-bold mb-6">Projects</h1>
+
+  <!-- Replace with your content; example cards -->
+  <section class="grid gap-6 md:grid-cols-2">
+    <article class="border rounded-xl p-5">
+      <h2 class="text-xl font-semibold">Project Name</h2>
+      <p class="text-zinc-600 mt-2">One-line description of what you built and why it’s cool.</p>
+      <a href="https://github.com/your/repo" class="inline-block mt-3 underline text-sm">Source</a>
+    </article>
+    <!-- duplicate <article> for more projects -->
+  </section>
+
+  <Fragment slot="footer"><Footer/></Fragment>
+</Base>

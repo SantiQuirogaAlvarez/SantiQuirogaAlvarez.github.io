@@ -1,0 +1,41 @@
+---
+import Base from "../layouts/Base.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+
+Astro.response.status = 404;
+---
+<Base title="404 — Page not found · Santiago Quiroga" description="The page you’re looking for doesn’t exist.">
+  <Fragment slot="nav"><Navbar/></Fragment>
+
+  <section class="mx-auto max-w-2xl text-center py-16">
+    <p class="text-sm tracking-widest text-[var(--muted)]">ERROR 404</p>
+    <h1 class="mt-2 text-4xl md:text-5xl font-extrabold">Page not found</h1>
+    <p class="mt-4 text-[var(--muted)]">
+      The page you’re looking for doesn’t exist, was moved, or the URL was mistyped.
+    </p>
+
+    <div class="mt-8 flex items-center justify-center gap-3">
+      <a
+        href="/"
+        class="inline-flex items-center rounded-xl border border-[var(--border)] bg-[var(--surface)]
+               px-4 py-2 font-medium hover:bg-[var(--bg)]"
+      >
+        ← Go home
+      </a>
+      <a
+        href="/projects"
+        class="btn inline-flex items-center rounded-xl bg-[var(--accent)]
+                px-4 py-2 font-medium text-white dark:text-[var(--crust)] hover:opacity-90"
+      >
+        View projects
+      </a>
+    </div>
+
+    <div class="mt-10 text-sm text-[var(--overlay0)]">
+      If you think this is a bug, <a class="underline text-[var(--accent)]" href="https://github.com/SantiQuirogaAlvarez">open an issue</a>.
+    </div>
+  </section>
+
+  <Fragment slot="footer"><Footer/></Fragment>
+</Base>

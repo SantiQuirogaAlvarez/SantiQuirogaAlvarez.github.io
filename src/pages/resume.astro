@@ -1,0 +1,80 @@
+---
+import Base from "../layouts/Base.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+---
+<Base title="Resume — Santiago Quiroga" description="Experience, education, and skills.">
+  <Fragment slot="nav"><Navbar/></Fragment>
+
+  <section class="space-y-6">
+    <header>
+      <h1 class="text-3xl md:text-4xl font-extrabold">Resume</h1>
+      <p class="text-[var(--muted)] mt-1">Inline viewer with quick actions.</p>
+    </header>
+
+    <!-- Toolbar -->
+    <div class="flex flex-wrap items-center gap-3">
+      <a
+        href="/assets/resume.pdf"
+        target="_blank" rel="noopener"
+        class="btn inline-flex items-center rounded-xl border border-[var(--border)] bg-[var(--surface)]
+               px-4 py-2 text-sm font-medium hover:bg-[var(--bg)]"
+      >
+        Open in new tab
+      </a>
+
+      <a
+        href="/assets/resume.pdf" download
+        class="btn inline-flex items-center rounded-xl border border-[var(--border)] bg-[var(--surface)]
+               px-4 py-2 text-sm font-medium hover:bg-[var(--bg)]"
+      >
+        Download PDF
+      </a>
+
+      <button
+        id="print-resume"
+        class="btn inline-flex items-center rounded-xl bg-[var(--accent)] text-white dark:text-[var(--crust)]
+               px-4 py-2 text-sm font-medium hover:opacity-90"
+        type="button"
+      >
+        Print
+      </button>
+    </div>
+
+    <!-- Inline PDF viewer -->
+    <div class="rounded-xl border border-[var(--border)] overflow-hidden bg-[var(--surface)]">
+      <!--
+        Notes:
+        - The #view=FitH etc. are viewer hints; some browsers ignore them.
+        - Height is ~82vh so the viewer fills the page but leaves header/footer.
+      -->
+      <iframe
+        id="resume-frame"
+        src="/assets/resume.pdf#view=FitH&scrollbar=1&toolbar=1&navpanes=0"
+        class="w-full h-[82vh] block"
+        title="Resume PDF"
+      ></iframe>
+    </div>
+
+    <!-- Fallback for browsers that can’t embed -->
+    <p class="text-sm text-[var(--overlay0)]">
+      If the viewer doesn’t load, <a class="underline" href="/assets/resume.pdf" target="_blank" rel="noopener">open the PDF</a>.
+    </p>
+  </section>
+
+  <Fragment slot="footer"><Footer/></Fragment>
+</Base>
+
+<script is:inline>
+  // Print button: prints the PDF in the iframe (same-origin).
+  (function () {
+    const btn = document.getElementById('print-resume');
+    const frame = document.getElementById('resume-frame');
+    if (btn && frame) {
+      btn.addEventListener('click', () => {
+        try {
+          frame.contentWindow?.focus();
+          frame.contentWindow?.print();
+        } catch (e) {
+          // If blocked by the browser, just open a new tab to print there.
+          window.open('/assets/resume.pdf', '_blank', 'n_

@@ -1,0 +1,110 @@
+---
+const links = [
+  { href: "/", label: "Home" },
+  { href: "/projects", label: "Projects" },
+  { href: "/resume", label: "Resume" },
+  { href: "/contact", label: "Contact" },
+];
+const current = Astro.url.pathname.replace(/\/+$/, "") || "/";
+---
+<nav class="relative h-14 flex items-center">
+  <a href="/" class="group flex items-center gap-2 font-semibold tracking-tight text-[var(--text)]">
+    <span>Santiago Quiroga</span>
+    <span class="size-1.5 rounded-full bg-[var(--accent)] transition-transform group-hover:scale-125" aria-hidden="true"></span>
+  </a>
+
+  <!-- DESKTOP links -->
+  <ul id="nav-desktop" class="ml-auto hidden md:flex items-center gap-8 text-base">
+    {links.map(l => {
+      const isActive = current === l.href;
+      return (
+        <li class="list-none">
+          <a
+            href={l.href}
+            class={`uppercase tracking-wider text-sm font-extrabold ${
+              isActive
+                ? "bg-gradient-to-r from-[var(--ctp-lavender)] to-[var(--ctp-mauve)] bg-clip-text text-transparent"
+                : "text-[var(--text)]/80 hover:text-[var(--text)]"
+            }`}
+            aria-current={isActive ? "page" : undefined}
+          >
+            {l.label}
+          </a>
+        </li>
+      );
+    })}
+  </ul>
+
+  <!-- MOBILE hamburger -->
+  <button
+    id="nav-toggle"
+    class="md:hidden ml-auto rounded-lg border border-[var(--border)] bg-[var(--surface)] px-3 py-1.5 text-sm hover:bg-[var(--bg)]"
+    aria-label="Open menu"
+    aria-expanded="false"
+    aria-controls="nav-mobile"
+  >☰</button>
+
+  <!-- MOBILE popover -->
+  <div
+    id="nav-mobile"
+    class="hidden md:hidden absolute right-0 top-14 w-60 rounded-xl border border-[var(--border)] bg-[var(--surface)] p-2 shadow-lg"
+  >
+    <ul class="flex flex-col">
+      {links.map(l => {
+        const isActive = current === l.href;
+        return (
+          <li class="list-none">
+            <a
+              href={l.href}
+              class={`block rounded-lg px-3 py-2 text-sm font-medium ${
+                isActive
+                  ? "text-[var(--accent)]"
+                  : "text-[var(--text)]/80 hover:text-[var(--text)]"
+              }`}
+              aria-current={isActive ? "page" : undefined}
+            >
+              {l.label}
+            </a>
+          </li>
+        );
+      })}
+    </ul>
+  </div>
+</nav>
+
+<script is:inline>
+  (function () {
+    const btn = document.getElementById('nav-toggle');
+    const mobile = document.getElementById('nav-mobile');
+
+    function closeMenu() {
+      if (!mobile.classList.contains('hidden')) {
+        mobile.classList.add('hidden');
+        btn.setAttribute('aria-expanded', 'false');
+        btn.textContent = '☰';
+      }
+    }
+
+    if (btn && mobile) {
+      btn.addEventListener('click', () => {
+        const isHidden = mobile.classList.toggle('hidden');
+        btn.setAttribute('aria-expanded', String(!isHidden));
+        btn.textContent = isHidden ? '☰' : '✕';
+      });
+
+      mobile.addEventListener('click', (e) => {
+        const t = e.target;
+        if (t && t.tagName === 'A') closeMenu();
+      });
+
+      window.addEventListener('resize', () => {
+        if (window.innerWidth >= 768) closeMenu();
+      });
+
+      document.addEventListener('click', (e) => {
+        if (window.innerWidth >= 768) return;
+        if (!mobile.contains(e.target) && e.target !== btn) closeMenu();
+      });
+    }
+  })();
+</script>

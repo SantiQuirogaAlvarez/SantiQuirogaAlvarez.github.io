@@ -1,0 +1,12 @@
+---
+import ThemeToggle from "./ThemeToggle.astro";
+---
+<div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between text-sm text-[var(--muted)]">
+  <div>
+    © {new Date().getFullYear()} Santiago Quiroga ·
+    <a class="underline" href="https://github.com/SantiQuirogaAlvarez">GitHub</a>
+  </div>
+  <div class="ml-auto">
+    <ThemeToggle />
+  </div>
+</div>

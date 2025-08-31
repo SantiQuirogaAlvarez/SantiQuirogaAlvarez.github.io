@@ -1,0 +1,28 @@
+---
+import Base from "../layouts/Base.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+---
+<Base title="Santiago Quiroga — Portfolio" description="Portfolio & projects, resume, contact.">
+  <Fragment slot="nav"><Navbar/></Fragment>
+
+  <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight">Santiago Quiroga Álvarez</h1>
+
+  <p class="text-zinc-600 mb-8">CU Boulder student • Portfolio & projects</p>
+
+  <h2 class="text-xl font-semibold mt-10 mb-3">About</h2>
+  <div class="space-y-4">
+    <!-- Paste your About paragraphs here -->
+  </div>
+
+  <h2 class="text-xl font-semibold mt-10 mb-3">Contact</h2>
+  <p class="space-x-2">
+    <a class="underline" href="mailto:saqu6490@colorado.edu">saqu6490@colorado.edu</a>
+    <span>·</span>
+    <a class="underline" href="https://linkedin.com/in/...">LinkedIn</a>
+    <span>·</span>
+    <a class="underline" href="https://github.com/SantiQuirogaAlvarez">GitHub</a>
+  </p>
+
+  <Fragment slot="footer"><Footer/></Fragment>
+</Base>
