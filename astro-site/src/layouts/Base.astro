@@ -1,0 +1,30 @@
+---
+import "../styles/global.css";
+const { title = "Santiago Quiroga — Portfolio", description = "Portfolio Website for Santiago Quiroga" } = Astro.props;
+---
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.ico" />
+  </head>
+  <body class="min-h-screen bg-white text-zinc-900 antialiased">
+    <header class="sticky top-0 z-50 bg-white/80 backdrop-blur border-b">
+      <div class="mx-auto max-w-4xl px-4">
+        <slot name="nav" />
+      </div>
+    </header>
+
+    <main class="mx-auto max-w-4xl px-4 py-10">
+      <slot />
+    </main>
+
+    <footer class="border-t py-8 mt-16">
+      <div class="mx-auto max-w-4xl px-4">
+        <slot name="footer" />
+      </div>
+    </footer>
+  </body>
+</html>

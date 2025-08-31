@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact — Santiago Quiroga</title>
+  <meta name="description" content="Contact form for Santiago Quiroga.">
+
+  <!-- Let browsers know we support dark & light -->
+  <meta name="color-scheme" content="dark light">
+
+  <!-- Dynamic tab color (nice on mobile) -->
+  <meta name="theme-color" media="(prefers-color-scheme: light)" content="#eff1f5">
+  <meta name="theme-color" media="(prefers-color-scheme: dark)"  content="#11111b">
+
+  <!-- Your consolidated CSS -->
+  <link rel="stylesheet" href="/assets/css/site.css">
+
+  <!-- SEO tags (works because we enabled jekyll-seo-tag) -->
+  <!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Contact — Santiago Quiroga | Santiago Quiroga Álvarez</title>
+<meta name="generator" content="Jekyll v3.10.0" />
+<meta property="og:title" content="Contact — Santiago Quiroga" />
+<meta name="author" content="Santiago Quiroga Álvarez" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="Contact form for Santiago Quiroga." />
+<meta property="og:description" content="Contact form for Santiago Quiroga." />
+<link rel="canonical" href="http://localhost:4000/contact/" />
+<meta property="og:url" content="http://localhost:4000/contact/" />
+<meta property="og:site_name" content="Santiago Quiroga Álvarez" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Contact — Santiago Quiroga" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","author":{"@type":"Person","name":"Santiago Quiroga Álvarez"},"description":"Contact form for Santiago Quiroga.","headline":"Contact — Santiago Quiroga","url":"http://localhost:4000/contact/"}</script>
+<!-- End Jekyll SEO tag -->
+
+</head>
+
+<body>
+  <!-- Skip link -->
+  <a class="skip" href="#main">Skip to content</a>
+
+  <div class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="/" aria-label="Home">
+      <!--<img src="/assets/headshot.jpg" alt="Portrait of Santiago Quiroga"> -->
+      <span>Santiago Quiroga Álvarez</span>
+    </a>
+    <nav>
+      <a href="/#about">About</a>
+      <a href="/projects/">Projects</a>
+      <a href="/contact/">Contact</a>
+      <a href="/resume/">Resume</a>
+    </nav>
+  </div>
+</div>
+
+
+  <main id="main" class="site-main container">
+    <h1 class="mt-0">Contact</h1>
+<p class="muted">This form emails me at <strong>saqu6490@colorado.edu</strong>.</p>
+
+<form class="form" action="YOUR_FORMSPREE_ENDPOINT" method="POST">
+  <div class="row">
+    <div>
+      <label for="name">Name</label>
+      <input class="input" id="name" name="name" required>
+    </div>
+    <div>
+      <label for="email">Email</label>
+      <input class="input" id="email" name="_replyto" type="email" required>
+    </div>
+  </div>
+
+  <div>
+    <label for="message">Message</label>
+    <textarea class="textarea" id="message" name="message" rows="6" required></textarea>
+  </div>
+
+  <!-- Honeypot anti-spam -->
+  <input class="hp" type="text" name="_gotcha" tabindex="-1" autocomplete="off">
+
+  <!-- Optional: subject & redirect -->
+  <input type="hidden" name="_subject" value="Portfolio contact form">
+  <input type="hidden" name="_next" value="https://santiquirogaalvarez.github.io/contact/?sent=1">
+
+  <button class="btn" type="submit">Send</button>
+</form>
+
+  </main>
+
+  <footer class="site-footer">
+    © <span id="y"></span> Santiago Quiroga Álvarez
+  </footer>
+  <script>document.getElementById('y').textContent=new Date().getFullYear()</script>
+</body>
+</html>
