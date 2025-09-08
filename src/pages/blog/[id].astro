@@ -1,0 +1,36 @@
+---
+import { getCollection, getEntry } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog");
+  return posts.map(post => ({ params: { id: post.id } }));
+}
+
+let { id } = Astro.params;
+if (id.endsWith('.md')) id = id.replace(/\.md$/, '');
+const post = id ? await getEntry("blog", id) : undefined;
+if (!post) {
+  throw new Error(`Blog post not found: ${id}`);
+}
+const rendered = await post.render();
+---
+
+<Base title={post.data.title} description={post.data.description}>
+  <Fragment slot="nav"><Navbar /></Fragment>
+  <article class="prose mx-auto">
+    <h1>{post.data.title}</h1>
+    {post.data.description && <p class="text-zinc-400 mb-2">{post.data.description}</p>}
+    <div class="flex items-center text-sm text-zinc-500 mb-2">
+      <span class="mr-2">🗓️ {post.data.date}</span>
+      {post.data.tags && post.data.tags.map((tag: string) => (
+        <span class="bg-purple-700 text-white px-2 py-1 rounded ml-2">#{tag}</span>
+      ))}
+    </div>
+    <hr class="my-4" />
+  <rendered.Content />
+  </article>
+  <Fragment slot="footer"><Footer /></Fragment>
+</Base>
