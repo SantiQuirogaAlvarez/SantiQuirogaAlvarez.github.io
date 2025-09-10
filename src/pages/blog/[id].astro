@@ -4,13 +4,23 @@ import Base from "../../layouts/Base.astro";
 import Navbar from "../../components/Navbar.astro";
 import Footer from "../../components/Footer.astro";
 
+
 export async function getStaticPaths() {
   const posts = await getCollection("blog");
-  return posts.map(post => ({ params: { id: post.id } }));
+  return posts.map(post => ({
+    params: { id: post.id }, // post.id is the filename without .md
+  }));
 }
 
+
+
+
 let { id } = Astro.params;
-if (id.endsWith('.md')) id = id.replace(/\.md$/, '');
+console.log('[blog/[id].astro] Incoming id param:', id);
+if (id.endsWith('.md')) {
+  id = id.slice(0, -3);
+  console.log('[blog/[id].astro] Stripped .md, new id:', id);
+}
 const post = id ? await getEntry("blog", id) : undefined;
 if (!post) {
   throw new Error(`Blog post not found: ${id}`);

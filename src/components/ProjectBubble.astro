@@ -1,0 +1,18 @@
+---
+const { title, description, link, image } = Astro.props;
+---
+
+<div class="rounded-lg p-4 flex flex-col items-center hover:scale-105 transition-transform
+  bg-white dark:bg-[var(--ctp-base)]
+  text-gray-900 dark:text-[var(--ctp-text)]
+  border border-[var(--ctp-surface2)] dark:border-[var(--ctp-surface1)]
+  shadow-lg dark:shadow-[0_4px_24px_0_rgba(30,30,46,0.25)]">
+  {image && <img src={image} alt={title} class="w-24 h-24 object-cover rounded-full mb-2" />}
+  <h2 class="text-xl font-bold mb-1 text-[var(--ctp-mauve)] dark:text-[var(--ctp-lavender)]">{title}</h2>
+  <p class="mb-2 text-center text-gray-600 dark:text-[var(--ctp-subtext0)]">{description}</p>
+  {link && (
+    <a href={link} target="_blank" rel="noopener" class="text-[var(--ctp-mauve)] dark:text-[var(--ctp-lavender)] hover:underline">
+      View Project
+    </a>
+  )}
+</div>
