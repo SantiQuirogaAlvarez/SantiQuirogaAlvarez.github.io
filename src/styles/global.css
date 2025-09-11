@@ -8,12 +8,13 @@
    ======================= */
 
 /* Latte (light) */
+
 :root{
-  /* Core */
-  --ctp-base:#eff1f5; --ctp-mantle:#e6e9ef; --ctp-crust:#dce0e8;
-  --ctp-text:#4c4f69; --ctp-subtext1:#5c5f77; --ctp-subtext0:#6c6f85;
-  --ctp-overlay2:#7c7f93; --ctp-overlay1:#8c8fa1; --ctp-overlay0:#9ca0b0;
-  --ctp-surface2:#acb0be; --ctp-surface1:#bcc0cc; --ctp-surface0:#ccd0da;
+  /* Improved light mode for contrast */
+  --ctp-base:#fafafa; --ctp-mantle:#f5f5f5; --ctp-crust:#ececec;
+  --ctp-text:#18181b; --ctp-subtext1:#333336; --ctp-subtext0:#444448;
+  --ctp-overlay2:#66666a; --ctp-overlay1:#88888c; --ctp-overlay0:#aaaaae;
+  --ctp-surface2:#ccccce; --ctp-surface1:#dddddf; --ctp-surface0:#ededee;
   /* Accents */
   --ctp-rosewater:#dc8a78; --ctp-flamingo:#dd7878; --ctp-pink:#ea76cb;
   --ctp-mauve:#8839ef; --ctp-red:#d20f39; --ctp-maroon:#e64553;

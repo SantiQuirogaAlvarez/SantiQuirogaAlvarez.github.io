@@ -1,0 +1,33 @@
+---
+import { getCollection, getEntry } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+
+export async function getStaticPaths() {
+  const notes = await getCollection("notes");
+  return notes.map(note => ({
+    params: { id: note.id },
+  }));
+}
+
+let { id } = Astro.params;
+const note = id ? await getEntry("notes", id) : undefined;
+if (!note) {
+  throw new Error(`Note not found: ${id}`);
+}
+// @ts-expect-error: Astro markdown entries have .render()
+const rendered = await note.render();
+---
+
+<Base title={note.data.title} description={note.data.subject}>
+  <Fragment slot="nav"><Navbar /></Fragment>
+  <article class="prose mx-auto">
+    <h1>{note.data.title}</h1>
+    <p class="text-zinc-400 mb-2">Subject: {note.data.subject}</p>
+    <span class="text-sm text-zinc-500 mb-2">🗓️ {note.data.date}</span>
+    <hr class="my-4" />
+    <rendered.Content />
+  </article>
+  <Fragment slot="footer"><Footer /></Fragment>
+</Base>

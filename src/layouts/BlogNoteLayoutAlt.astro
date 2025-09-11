@@ -1,0 +1,12 @@
+---
+const { children } = Astro.props;
+---
+<section class="bg-gradient-to-r from-purple-700 to-indigo-700 rounded-lg shadow-lg p-8 text-white">
+  <header class="mb-4">
+    <h2 class="text-3xl font-bold">Alternative Layout</h2>
+    <p class="text-indigo-200">A different look for your blog post.</p>
+  </header>
+  <div class="prose prose-invert max-w-none">
+    {children}
+  </div>
+</section>

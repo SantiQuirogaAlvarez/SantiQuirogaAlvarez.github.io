@@ -3,6 +3,8 @@ import { getCollection, getEntry } from "astro:content";
 import Base from "../../layouts/Base.astro";
 import Navbar from "../../components/Navbar.astro";
 import Footer from "../../components/Footer.astro";
+import BlogNoteLayout from "../../layouts/BlogNoteLayout.astro";
+import BlogNoteLayoutAlt from "../../layouts/BlogNoteLayoutAlt.astro";
 
 
 export async function getStaticPaths() {
@@ -26,6 +28,8 @@ if (!post) {
   throw new Error(`Blog post not found: ${id}`);
 }
 const rendered = await post.render();
+const layouts = { BlogNoteLayout, BlogNoteLayoutAlt };
+const Layout = layouts[note.data.layout || "BlogNoteLayout"];
 ---
 
 <Base title={post.data.title} description={post.data.description}>
