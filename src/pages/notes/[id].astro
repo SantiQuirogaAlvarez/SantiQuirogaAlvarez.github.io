@@ -6,12 +6,13 @@ import Footer from "../../components/Footer.astro";
 
 export async function getStaticPaths() {
   const notes = await getCollection("notes");
-  return notes.map(note => ({
-    params: { id: note.id },
-  }));
+  return notes.map((note) => ({ params: { id: note.id } }));
 }
 
 let { id } = Astro.params;
+if (id.endsWith('.md')) {
+  id = id.slice(0, -3);
+}
 const note = id ? await getEntry("notes", id) : undefined;
 if (!note) {
   throw new Error(`Note not found: ${id}`);

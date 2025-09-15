@@ -9,8 +9,10 @@ const { post, idx } = Astro.props;
       {post.data.description && <p class="text-zinc-400 mb-2">{post.data.description}</p>}
       <div class="flex items-center text-sm text-zinc-500 mb-2">
         <span class="mr-2">🗓️ {post.data.date}</span>
-  {post.data.tags && post.data.tags.map((tag: string) => (
-          <span class="bg-purple-700 text-white px-2 py-1 rounded ml-2">#{tag}</span>
+        {post.data.tags && post.data.tags.map((tag: string) => (
+          <a href={`/tags/${encodeURIComponent(tag)}`} class="ml-2 no-underline">
+            <span class="bg-purple-700 text-white px-2 py-1 rounded">#{tag}</span>
+          </a>
         ))}
       </div>
     </article>

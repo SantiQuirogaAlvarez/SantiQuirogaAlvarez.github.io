@@ -28,8 +28,7 @@ if (!post) {
   throw new Error(`Blog post not found: ${id}`);
 }
 const rendered = await post.render();
-const layouts = { BlogNoteLayout, BlogNoteLayoutAlt };
-const Layout = layouts[note.data.layout || "BlogNoteLayout"];
+const LayoutComponent = post.data.layout === "BlogNoteLayoutAlt" ? BlogNoteLayoutAlt : BlogNoteLayout;
 ---
 
 <Base title={post.data.title} description={post.data.description}>
@@ -40,11 +39,15 @@ const Layout = layouts[note.data.layout || "BlogNoteLayout"];
     <div class="flex items-center text-sm text-zinc-500 mb-2">
       <span class="mr-2">🗓️ {post.data.date}</span>
       {post.data.tags && post.data.tags.map((tag: string) => (
-        <span class="bg-purple-700 text-white px-2 py-1 rounded ml-2">#{tag}</span>
+        <a href={`/tags/${encodeURIComponent(tag)}`} class="no-underline">
+          <span class="bg-purple-700 text-white px-2 py-1 rounded ml-2">#{tag}</span>
+        </a>
       ))}
     </div>
     <hr class="my-4" />
-  <rendered.Content />
+    <LayoutComponent>
+      <rendered.Content />
+    </LayoutComponent>
   </article>
   <Fragment slot="footer"><Footer /></Fragment>
 </Base>

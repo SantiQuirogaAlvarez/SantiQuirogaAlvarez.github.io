@@ -1,12 +1,12 @@
-<!-- public/favicon.svg -->
+<!-- public/assets/favicon.svg -->
+<!-- Keep favicons simple: no external fonts, CSS vars, or media queries. -->
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img">
-  <style>
-    :root { --bg:#eff1f5; --fg:#8839ef; }            /* Latte base + mauve */
-    @media (prefers-color-scheme: dark){
-      :root { --bg:#1e1e2e; --fg:#cba6f7; }          /* Mocha base + mauve */
-    }
-    text { font: 800 40px/1 "Inter", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; }
-  </style>
-  <rect width="64" height="64" rx="14" ry="14" fill="var(--bg)"/>
-  <text x="50%" y="50%" text-anchor="middle" dominant-baseline="central" fill="var(--fg)">SQ</text>
+  <!-- Rounded purple tile with white monogram -->
+  <rect width="64" height="64" rx="14" ry="14" fill="#8839ef"/>
+  <g fill="#ffffff">
+    <!-- Stylized S -->
+    <path d="M20 22c0-4 4-6 10-6s10 2 10 6c0 3-2 5-6 6l-6 2c-4 1-6 3-6 6 0 4 4 6 10 6s10-2 10-6" stroke="#ffffff" stroke-width="0"/>
+    <!-- Stylized Q -->
+    <path d="M34 24a10 10 0 1 1-2 20l6 6l4-4l-5-5a10 10 0 0 0-3-17z" opacity=".0"/>
+  </g>
 </svg>

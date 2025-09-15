@@ -1,0 +1,11 @@
+---
+import Base from "../../layouts/Base.astro";
+import NotesList from "../../components/NotesList.jsx";
+---
+<Base title="Notes">
+  <section class="mx-auto max-w-4xl p-6">
+    <h1 class="text-3xl font-bold mb-4">Notes</h1>
+    <NotesList client:load />
+  </section>
+</Base>
+

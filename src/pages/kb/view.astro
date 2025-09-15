@@ -1,0 +1,13 @@
+---
+import Base from "../../layouts/Base.astro";
+import NoteViewer from "../../components/NoteViewer.jsx";
+const slug = '';
+export const prerender = true;
+---
+<Base title="Note">
+  <section class="mx-auto max-w-3xl p-6">
+    <!-- The island reads slug from location.search at runtime -->
+    <NoteViewer slug={slug} client:load />
+  </section>
+</Base>
+
