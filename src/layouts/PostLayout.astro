@@ -5,6 +5,6 @@ const rendered = await entry.render();
 
 <article class="prose mx-auto">
   <h1>{entry.data.title}</h1>
-  <p>{entry.data.description}</p>
+  <p class="text-[var(--muted)]">{entry.data.description}</p>
   <div class="prose" set:html={rendered.html} />
 </article>

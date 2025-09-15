@@ -32,14 +32,14 @@ const rendered = await post.render();
   <Fragment slot="nav"><Navbar /></Fragment>
   <article class="prose mx-auto">
     <h1>{post.data.title}</h1>
-    {post.data.description && <p class="text-zinc-400 mb-2">{post.data.description}</p>}
-    <div class="flex items-center text-sm text-zinc-500 mb-2">
+    {post.data.description && <p class="text-[var(--muted)] mb-2">{post.data.description}</p>}
+    <div class="flex items-center text-sm text-[var(--muted)] mb-2">
       <span class="mr-2">🗓️ {post.data.date}</span>
       {post.data.tags && post.data.tags.map((tag: string) => (
-        <span class="bg-purple-700 text-white px-2 py-1 rounded ml-2">#{tag}</span>
+        <span class="tag ml-2">#{tag}</span>
       ))}
     </div>
-    <hr class="my-4" />
+    <hr class="my-4 border-[var(--border)]" />
   <rendered.Content />
   </article>
   <Fragment slot="footer"><Footer /></Fragment>

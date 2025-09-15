@@ -11,7 +11,7 @@ const current = Astro.url.pathname.replace(/\/+$/, "") || "/";
 ---
 <nav class="relative h-14 flex items-center">
   <a href="/" class="group flex items-center gap-2 font-semibold tracking-tight text-[var(--text)]">
-    <span>Santiago Quiroga</span>
+    <span class="transition-colors group-hover:bg-gradient-to-r group-hover:from-[var(--ctp-lavender)] group-hover:via-[var(--ctp-mauve)] group-hover:to-[var(--ctp-rosewater)] group-hover:bg-clip-text group-hover:text-transparent">Santiago Quiroga</span>
     <!--<span class="size-1.5 rounded-full bg-[var(--accent)] transition-transform group-hover:scale-125" aria-hidden="true"></span> -->
   </a>
 
@@ -25,7 +25,7 @@ const current = Astro.url.pathname.replace(/\/+$/, "") || "/";
             href={l.href}
             class={`uppercase tracking-wider text-sm font-extrabold ${
               isActive
-                ? "bg-gradient-to-r from-[var(--ctp-lavender)] to-[var(--ctp-mauve)] bg-clip-text text-transparent"
+                ? "text-gradient-ctp"
                 : "text-[var(--text)]/80 hover:text-[var(--text)]"
             }`}
             aria-current={isActive ? "page" : undefined}
@@ -60,7 +60,7 @@ const current = Astro.url.pathname.replace(/\/+$/, "") || "/";
               href={l.href}
               class={`block rounded-lg px-3 py-2 text-sm font-medium ${
                 isActive
-                  ? "text-[var(--accent)]"
+                  ? "text-gradient-ctp"
                   : "text-[var(--text)]/80 hover:text-[var(--text)]"
               }`}
               aria-current={isActive ? "page" : undefined}
