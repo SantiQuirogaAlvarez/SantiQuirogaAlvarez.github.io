@@ -22,7 +22,8 @@ const { title = "Santiago Quiroga — Portfolio", description = "" } = Astro.pro
         const site = Astro.site?.href ?? (import.meta.env.SITE ?? "");
         const pathname = Astro.url.pathname;
         const url = site ? new URL(pathname, site).href : undefined;
-        const image = site ? new URL('/assets/favicon-512.png', site).href : '/assets/favicon-512.png';
+        const imagePath = '/social/og-default.svg?v=1';
+        const image = site ? new URL(imagePath, site).href : imagePath;
         return (
           <>
             {url && <link rel="canonical" href={url} />}
@@ -31,6 +32,9 @@ const { title = "Santiago Quiroga — Portfolio", description = "" } = Astro.pro
             {description && <meta property="og:description" content={description} />}
             {url && <meta property="og:url" content={url} />}
             <meta property="og:image" content={image} />
+            <meta property="og:image:width" content="1200" />
+            <meta property="og:image:height" content="630" />
+            <meta property="og:image:type" content="image/svg+xml" />
             <meta name="twitter:card" content="summary_large_image" />
             <meta name="twitter:title" content={title} />
             {description && <meta name="twitter:description" content={description} />}
