@@ -1,5 +1,6 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
+import sitemap from '@astrojs/sitemap';
  
 
 import tailwindcss from '@tailwindcss/vite';
@@ -9,12 +10,14 @@ import rehypeKatex from 'rehype-katex';
 
 // https://astro.build/config
 export default defineConfig({
-  base: '/', // Use '/' for local dev, set to '/SantiQuirogaAlvarez.github.io/' for GitHub Pages
+  site: 'https://santiquirogaalvarez.github.io',
+  base: '/', // User site on GitHub Pages should use '/'
+  integrations: [sitemap()],
   vite: {
     plugins: [tailwindcss()],
   },
   markdown: {
-  remarkPlugins: [remarkGfm, remarkMath],
+    remarkPlugins: [remarkGfm, remarkMath],
     rehypePlugins: [rehypeKatex],
   },
 });

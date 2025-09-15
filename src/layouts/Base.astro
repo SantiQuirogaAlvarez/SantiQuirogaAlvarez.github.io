@@ -10,6 +10,44 @@ const { title = "Santiago Quiroga — Portfolio", description = "" } = Astro.pro
     <title>{title}</title>
     <meta name="description" content={description} />
 
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png" />
+    <link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48.png" />
+    <link rel="icon" type="image/png" sizes="64x64" href="/assets/favicon-64.png" />
+    <link rel="icon" type="image/png" sizes="128x128" href="/assets/favicon-128.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/favicon-192.png" />
+    <link rel="icon" type="image/png" sizes="256x256" href="/assets/favicon-256.png" />
+    <link rel="icon" type="image/png" sizes="512x512" href="/assets/favicon-512.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
+    <meta name="theme-color" content="#cba6f7" />
+
+    <!-- Canonical + Social -->
+    {
+      // Build absolute URLs when possible
+      (() => {
+        const site = Astro.site?.href ?? (import.meta.env.SITE ?? "");
+        const pathname = Astro.url.pathname;
+        const url = site ? new URL(pathname, site).href : undefined;
+        const image = site ? new URL('/assets/favicon-512.png', site).href : '/assets/favicon-512.png';
+        return (
+          <>
+            {url && <link rel="canonical" href={url} />}
+            <meta property="og:type" content="website" />
+            <meta property="og:title" content={title} />
+            {description && <meta property="og:description" content={description} />}
+            {url && <meta property="og:url" content={url} />}
+            <meta property="og:image" content={image} />
+            <meta name="twitter:card" content="summary_large_image" />
+            <meta name="twitter:title" content={title} />
+            {description && <meta name="twitter:description" content={description} />}
+            <meta name="twitter:image" content={image} />
+          </>
+        );
+      })()
+    }
+
     <!-- Set theme before paint -->
     <script is:inline>
       (() => {

@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+# Update if your canonical domain changes
+Sitemap: https://santiquirogaalvarez.github.io/sitemap-index.xml
+
