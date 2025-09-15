@@ -16,10 +16,8 @@ export async function getStaticPaths() {
 
 
 let { id } = Astro.params;
-console.log('[blog/[id].astro] Incoming id param:', id);
 if (id.endsWith('.md')) {
   id = id.slice(0, -3);
-  console.log('[blog/[id].astro] Stripped .md, new id:', id);
 }
 const post = id ? await getEntry("blog", id) : undefined;
 if (!post) {

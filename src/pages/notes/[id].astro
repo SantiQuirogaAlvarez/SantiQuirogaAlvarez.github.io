@@ -1,0 +1,35 @@
+---
+import { getCollection, getEntry } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import Navbar from "../../components/Navbar.astro";
+import Footer from "../../components/Footer.astro";
+
+export async function getStaticPaths() {
+  const notes = await getCollection("notes");
+  return notes.map((n) => ({ params: { id: n.id } }));
+}
+
+let { id } = Astro.params;
+const note = id ? await getEntry("notes", id) : undefined;
+if (!note) {
+  throw new Error(`Note not found: ${id}`);
+}
+const rendered = await note.render();
+---
+
+<Base title={note.data.title} description={note.data.description}>
+  <Fragment slot="nav"><Navbar /></Fragment>
+  <article class="prose mx-auto">
+    <h1>{note.data.title}</h1>
+    {note.data.description && <p class="text-[var(--muted)] mb-2">{note.data.description}</p>}
+    <div class="flex items-center text-sm text-[var(--muted)] mb-2">
+      <span class="mr-2">🗓️ {note.data.date}</span>
+      {note.data.tags && note.data.tags.map((tag: string) => (
+        <span class="tag ml-2">#{tag}</span>
+      ))}
+    </div>
+    <hr class="my-4 border-[var(--border)]" />
+    <rendered.Content />
+  </article>
+  <Fragment slot="footer"><Footer /></Fragment>
+  </Base>
