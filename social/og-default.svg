@@ -1,0 +1,28 @@
+<!-- Default social share image (1200x630). Uses the SQ favicon styling, scaled. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630" role="img" aria-label="Santiago Quiroga — Social Preview">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1e1e2e"/>
+      <stop offset="100%" stop-color="#181825"/>
+    </linearGradient>
+    <linearGradient id="brand" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#b4befe"/>  <!-- lavender -->
+      <stop offset="60%" stop-color="#cba6f7"/>  <!-- mauve -->
+      <stop offset="100%" stop-color="#f5e0dc"/> <!-- rosewater -->
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bg)"/>
+
+  <!-- Centered brand block derived from favicon (scaled) -->
+  <g transform="translate(600,315)">
+    <!-- 512x512 rounded square centered -->
+    <rect x="-256" y="-256" width="512" height="512" rx="64" ry="64" fill="url(#brand)"/>
+    <!-- Monogram -->
+    <text x="0" y="36" text-anchor="middle" font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif" font-weight="900" font-size="220" fill="#11111b">SQ</text>
+  </g>
+
+  <!-- Title -->
+  <text x="600" y="560" text-anchor="middle" font-family="Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif" font-weight="700" font-size="44" fill="#cdd6f4">Santiago Quiroga — Portfolio</text>
+</svg>
