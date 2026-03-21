@@ -1,6 +1,8 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import ProjectCard from "../components/ProjectCard.astro";
+import BlueprintCard from "../components/BlueprintCard.astro";
+import ProjectFrame from "../components/ProjectFrame.astro";
 ---
 
 <BaseLayout title="Santiago Quiroga">
@@ -18,15 +20,22 @@ import ProjectCard from "../components/ProjectCard.astro";
         <p class="meta-line">[ 01 ] PROFILE // ABOUT</p>
         <h2 class="section-title">Who I am</h2>
         <p class="section-subtitle">Engineering Digital Dreams Into Reality</p>
-        <p class="main-text">
-          Santiago Quiroga is an undergraduate student in the Integrated Design Engineering program at the University of Colorado at Boulder. He bridges theoretical problem-solving in multivariable calculus, physics, and statics with hands-on project work and technical proficiency in C++, assembly, and web technologies. As a Certified SolidWorks Associate, he brings hands-on engineering project experience that he has applied in the roles described below.
-        </p>
-        <p class="main-text">
-          He has applied these skills in diverse contexts. At Skyryse Incorporated, he served as a research engineering intern, exploring 3D airspace visualization for SkyOS, their universal fly-by-wire system. Through his senior project experience in high school, he worked with a local engineer to retrofit a Tesla Model 3 motor and battery pack into a Chevrolet S-10 pickup truck, converting it into an electric vehicle. At Cabin, an eco-friendly prefabricated housing company in Mexico, he improved website performance by boosting SEO rankings and cutting loading times by 50 % through a thorough site redesign and full English translation. He also designed a prototype cabin with Internet of Things integration for remote management and authored a study on Valle de Bravo’s urban planning challenges, combining analytics and expert interviews to identify key shortcomings and recommend strategies for sustainable growth.
-        </p>
-        <p class="main-text">
-          Santiago is a native speaker of English and Spanish and is conversant in French. He has volunteered at El Árbol, a nonprofit bringing music and sports to children in rural Mexico. He also led a weeklong mountain biking expedition for fifteen participants. Outside of academics and work, he enjoys snowboarding, reading science fiction, and spending time with his family. Looking ahead, Santiago aims to channel his technical expertise, design skills, and collaborative experience into the aerospace or automotive industry, developing solutions that advance knowledge while making a meaningful impact.
-        </p>
+
+        <BlueprintCard
+          meta="Structured Notes // Overview"
+          widthLabel="1240PX"
+          heightLabel="812PX"
+        >
+          <p class="main-text">
+            Santiago Quiroga is an undergraduate student in the Integrated Design Engineering program at the University of Colorado at Boulder. He bridges theoretical problem-solving in multivariable calculus, physics, and statics with hands-on project work and technical proficiency in C++, assembly, and web technologies. As a Certified SolidWorks Associate, he brings hands-on engineering project experience that he has applied in the roles described below.
+          </p>
+          <p class="main-text">
+            He has applied these skills in diverse contexts. At Skyryse Incorporated, he served as a research engineering intern, exploring 3D airspace visualization for SkyOS, their universal fly-by-wire system. Through his senior project experience in high school, he worked with a local engineer to retrofit a Tesla Model 3 motor and battery pack into a Chevrolet S-10 pickup truck, converting it into an electric vehicle. At Cabin, an eco-friendly prefabricated housing company in Mexico, he improved website performance by boosting SEO rankings and cutting loading times by 50 % through a thorough site redesign and full English translation. He also designed a prototype cabin with Internet of Things integration for remote management and authored a study on Valle de Bravo’s urban planning challenges, combining analytics and expert interviews to identify key shortcomings and recommend strategies for sustainable growth.
+          </p>
+          <p class="main-text">
+            Santiago is a native speaker of English and Spanish and is conversant in French. He has volunteered at El Árbol, a nonprofit bringing music and sports to children in rural Mexico. He also led a weeklong mountain biking expedition for fifteen participants. Outside of academics and work, he enjoys snowboarding, reading science fiction, and spending time with his family. Looking ahead, Santiago aims to channel his technical expertise, design skills, and collaborative experience into the aerospace or automotive industry, developing solutions that advance knowledge while making a meaningful impact.
+          </p>
+        </BlueprintCard>
       </div>
     </section>
 
@@ -34,30 +43,32 @@ import ProjectCard from "../components/ProjectCard.astro";
       <div class="container stack">
         <p class="meta-line">[ 02 ] ARCHIVE // PROJECTS</p>
         <h2 class="section-title">Projects</h2>
-        <p class="section-subtitle">Some Projects I've Done Over The Years</p>
+        <p class="section-subtitle">Some Projects I’ve Done Over The Years</p>
 
-        <div class="projects-grid">
-          <ProjectCard
-            title="APPM 2360: Differential Equations and Linear Algebra Mortgage Analysis Project"
-            description="A project analyzing fixed and adjustable-rate mortgages using differential equation models and technical writing to produce a report outlining the pros and cons of each mortgage type, length, and down-payment ammount"
-            href="/projects/diff-mortgage-analysis"
-            tags={["Differential Equations", "Modeling", "LaTeX", "Math"]}
-          />
+        <ProjectFrame widthLabel="1380PX" heightLabel="548PX">
+          <div class="projects-grid">
+            <ProjectCard
+              title="APPM 2360: Differential Equations and Linear Algebra Mortgage Analysis Project"
+              description="A project analyzing fixed and adjustable-rate mortgages using differential equation models and technical writing to produce a report outlining the pros and cons of each mortgage type, length, and down-payment ammount"
+              href="/projects/diff-mortgage-analysis"
+              tags={["Differential Equations", "Modeling", "LaTeX", "Math"]}
+            />
 
-          <ProjectCard
-            title="Portfolio Website"
-            description="This website was built using Astro, css, html, and reusable components, prioritizing performance while implementing a modern web interface and aesthetic. You're browsing this project right now!"
-            href="/projects/how-I-made-this-website"
-            tags={["Web Development", "Programming", "Astro"]}
-          />
+            <ProjectCard
+              title="Portfolio Website"
+              description="This website was built using Astro, css, html, and reusable components, prioritizing performance while implementing a modern web interface and aesthetic. You're browsing this project right now!"
+              href="/projects/how-I-made-this-website"
+              tags={["Web Development", "Programming", "Astro"]}
+            />
 
-          <ProjectCard
-            title="Chemistry for Materials Science Notes"
-            description="This Area Is Under Construction, Please Check Back Later"
-            href="/"
-            tags={["Engineering", "Chemistry", "Notes"]}
-          />
-        </div>
+            <ProjectCard
+              title="Chemistry for Materials Science Notes"
+              description="This Area Is Under Construction, Please Check Back Later"
+              href="/"
+              tags={["Engineering", "Chemistry", "Notes"]}
+            />
+          </div>
+        </ProjectFrame>
       </div>
     </section>
 
@@ -76,7 +87,7 @@ import ProjectCard from "../components/ProjectCard.astro";
 
             <form
               class="contact-form"
-              action="https://formspree.io/f/YOUR_FORM_ID"
+              action="https://formspree.io/f/mjgazqzw"
               method="POST"
             >
               <label class="form-field">

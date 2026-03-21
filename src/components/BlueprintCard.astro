@@ -1,0 +1,48 @@
+---
+interface Props {
+  title?: string;
+  meta?: string;
+  widthLabel?: string;
+  heightLabel?: string;
+  className?: string;
+}
+
+const {
+  title,
+  meta,
+  widthLabel = "1240PX",
+  heightLabel = "812PX",
+  className = "",
+} = Astro.props;
+---
+
+<article class:list={["blueprint-card", className]}>
+  <div class="blueprint-card__inner">
+    {(meta || title) && (
+      <div class="blueprint-card__header">
+        {meta && <p class="blueprint-card__meta">{meta}</p>}
+        {title && <h3 class="blueprint-card__title">{title}</h3>}
+      </div>
+    )}
+
+    <div class="blueprint-card__content">
+      <slot />
+    </div>
+  </div>
+
+  <div class="blueprint-card__dim blueprint-card__dim--right" aria-hidden="true">
+    <span class="blueprint-card__cap blueprint-card__cap--top"></span>
+    <span class="blueprint-card__segment blueprint-card__segment--top"></span>
+    <span class="blueprint-card__label blueprint-card__label--right">{heightLabel}</span>
+    <span class="blueprint-card__segment blueprint-card__segment--bottom"></span>
+    <span class="blueprint-card__cap blueprint-card__cap--bottom"></span>
+  </div>
+
+  <div class="blueprint-card__dim blueprint-card__dim--bottom" aria-hidden="true">
+    <span class="blueprint-card__cap blueprint-card__cap--left"></span>
+    <span class="blueprint-card__segment blueprint-card__segment--left"></span>
+    <span class="blueprint-card__label blueprint-card__label--bottom">{widthLabel}</span>
+    <span class="blueprint-card__segment blueprint-card__segment--right"></span>
+    <span class="blueprint-card__cap blueprint-card__cap--right"></span>
+  </div>
+</article>
