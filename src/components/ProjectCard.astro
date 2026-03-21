@@ -1,0 +1,45 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  href: string;
+  image?: string;
+  imageAlt?: string;
+  tags?: string[];
+}
+
+const {
+  title,
+  description,
+  href,
+  image,
+  imageAlt = "",
+  tags = [],
+} = Astro.props;
+---
+
+<article class="surface-card project-card">
+  {image && (
+    <a href={href} class="project-card__image-link">
+      <img src={image} alt={imageAlt} class="project-card__image" />
+    </a>
+  )}
+
+  <div class="stack">
+    <h3 class="project-card__title">
+      <a href={href}>{title}</a>
+    </h3>
+
+    <p class="main-text project-card__description">{description}</p>
+
+    {tags.length > 0 && (
+      <ul class="project-card__tags" aria-label="Project tags">
+        {tags.map((tag) => <li>{tag}</li>)}
+      </ul>
+    )}
+
+    <p>
+      <a href={href} class="project-card__link">Read more</a>
+    </p>
+  </div>
+</article>

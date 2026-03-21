@@ -1,17 +1,140 @@
 ---
-
+import BaseLayout from "../layouts/BaseLayout.astro";
+import ProjectCard from "../components/ProjectCard.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<BaseLayout title="Santiago Quiroga">
+  <main>
+    <section id="home" class="section">
+      <div class="container stack">
+        <p class="meta-line">[ 00 ] ROOT // LANDING</p>
+        <h1 class="hero">Santiago Quiroga</h1>
+        <p class="alt-main">Engineer • Programmer • Designer</p>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="container stack">
+        <p class="meta-line">[ 01 ] PROFILE // ABOUT</p>
+        <h2 class="section-title">Who I am</h2>
+        <p class="section-subtitle">Engineering Digital Dreams Into Reality</p>
+        <p class="main-text">
+          Santiago Quiroga is an undergraduate student in the Integrated Design Engineering program at the University of Colorado at Boulder. He bridges theoretical problem-solving in multivariable calculus, physics, and statics with hands-on project work and technical proficiency in C++, assembly, and web technologies. As a Certified SolidWorks Associate, he brings hands-on engineering project experience that he has applied in the roles described below.
+        </p>
+        <p class="main-text">
+          He has applied these skills in diverse contexts. At Skyryse Incorporated, he served as a research engineering intern, exploring 3D airspace visualization for SkyOS, their universal fly-by-wire system. Through his senior project experience in high school, he worked with a local engineer to retrofit a Tesla Model 3 motor and battery pack into a Chevrolet S-10 pickup truck, converting it into an electric vehicle. At Cabin, an eco-friendly prefabricated housing company in Mexico, he improved website performance by boosting SEO rankings and cutting loading times by 50 % through a thorough site redesign and full English translation. He also designed a prototype cabin with Internet of Things integration for remote management and authored a study on Valle de Bravo’s urban planning challenges, combining analytics and expert interviews to identify key shortcomings and recommend strategies for sustainable growth.
+        </p>
+        <p class="main-text">
+          Santiago is a native speaker of English and Spanish and is conversant in French. He has volunteered at El Árbol, a nonprofit bringing music and sports to children in rural Mexico. He also led a weeklong mountain biking expedition for fifteen participants. Outside of academics and work, he enjoys snowboarding, reading science fiction, and spending time with his family. Looking ahead, Santiago aims to channel his technical expertise, design skills, and collaborative experience into the aerospace or automotive industry, developing solutions that advance knowledge while making a meaningful impact.
+        </p>
+      </div>
+    </section>
+
+    <section id="projects" class="section">
+      <div class="container stack">
+        <p class="meta-line">[ 02 ] ARCHIVE // PROJECTS</p>
+        <h2 class="section-title">Projects</h2>
+        <p class="section-subtitle">Some Projects I've Done Over The Years</p>
+
+        <div class="projects-grid">
+          <ProjectCard
+            title="APPM 2360: Differential Equations and Linear Algebra Mortgage Analysis Project"
+            description="A project analyzing fixed and adjustable-rate mortgages using differential equation models and technical writing to produce a report outlining the pros and cons of each mortgage type, length, and down-payment ammount"
+            href="/projects/diff-mortgage-analysis"
+            tags={["Differential Equations", "Modeling", "LaTeX", "Math"]}
+          />
+
+          <ProjectCard
+            title="Portfolio Website"
+            description="This website was built using Astro, css, html, and reusable components, prioritizing performance while implementing a modern web interface and aesthetic. You're browsing this project right now!"
+            href="/projects/how-I-made-this-website"
+            tags={["Web Development", "Programming", "Astro"]}
+          />
+
+          <ProjectCard
+            title="Chemistry for Materials Science Notes"
+            description="This Area Is Under Construction, Please Check Back Later"
+            href="/"
+            tags={["Engineering", "Chemistry", "Notes"]}
+          />
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container stack">
+        <p class="meta-line">[ 03 ] CHANNEL // CONTACT</p>
+        <h2 class="section-title">Contact</h2>
+        <p class="section-subtitle">Ways to reach me and follow my work.</p>
+
+        <div class="contact-grid">
+          <div class="surface-card stack contact-card">
+            <h3 class="contact-heading">Send Me A Message</h3>
+            <p class="main-text">
+              Fill out the form below to get in contact with me.
+            </p>
+
+            <form
+              class="contact-form"
+              action="https://formspree.io/f/YOUR_FORM_ID"
+              method="POST"
+            >
+              <label class="form-field">
+                <span class="alt-main">Name</span>
+                <input type="text" name="name" required />
+              </label>
+
+              <label class="form-field">
+                <span class="alt-main">Email</span>
+                <input type="email" name="email" required />
+              </label>
+
+              <label class="form-field">
+                <span class="alt-main">Subject</span>
+                <input type="text" name="subject" />
+              </label>
+
+              <label class="form-field">
+                <span class="alt-main">Message</span>
+                <textarea name="message" rows="6" required></textarea>
+              </label>
+
+              <div class="hero-actions">
+                <button type="submit" class="button">Send Message</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="surface-card stack social-card">
+            <h3 class="contact-heading">My Social Links</h3>
+            <p class="main-text">
+              You can also find me through these platforms.
+            </p>
+
+            <div class="contact-links">
+              <a
+                href="https://github.com/SantiQuirogaAlvarez"
+                class="contact-icon"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="GitHub"
+              >
+                <img src="/icons/github.svg" alt="GitHub Logo" />
+              </a>
+
+              <a
+                href="https://www.linkedin.com/in/santiquirogaalvarez"
+                class="contact-icon"
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="LinkedIn"
+              >
+                <img src="/icons/linkedin.svg" alt="LinkedIn Logo" />
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</BaseLayout>
