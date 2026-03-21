@@ -1,5 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const homeProjectsHref = `${import.meta.env.BASE_URL}#projects`;
 ---
 
 <BaseLayout title="Portfolio Website">
@@ -12,57 +14,54 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
       <div class="surface-card stack">
         <h3 class="section-title">Overview</h3>
         <p class="main-text">
-            I have always wanted to have my own website, I needed a porfolio webcase to showcase my talents and serve as an example of my technical expertise, and so I built the site you are currently on!
-            This site is built on the Astro framework, using raw HTML syntax and some CSS for the styling. I wanted to keep the site light and easy to use, while keeping the stack flexible enough to iterate on if I so desire in the future.
-            I pulled inspiration from science fiction for the font I wrote my name in, as well as inspiration from the Catppuccin color palette for this site.
+          I have always wanted to have my own website, I needed a porfolio webcase to showcase my talents and serve as an example of my technical expertise, and so I built the site you are currently on!
+          This site is built on the Astro framework, using raw HTML syntax and some CSS for the styling. I wanted to keep the site light and easy to use, while keeping the stack flexible enough to iterate on if I so desire in the future.
+          I pulled inspiration from science fiction for the font I wrote my name in, as well as inspiration from the Catppuccin color palette for this site.
         </p>
       </div>
 
       <div class="surface-card stack">
         <h3 class="section-title">What I Built</h3>
         <p class="main-text">
-            I built a modern scrolling-style portfolio with an eye-catching title, my bio, some showcased projects and a way to get in contact with me. In the future, I want to build a blog service into the site so that I can publish some writingh pieces. I also built in-depth pages for the showcased projects, to show in more detail what they consist of and explain my takeaways from them.
+          I built a modern scrolling-style portfolio with an eye-catching title, my bio, some showcased projects and a way to get in contact with me. In the future, I want to build a blog service into the site so that I can publish some writingh pieces. I also built in-depth pages for the showcased projects, to show in more detail what they consist of and explain my takeaways from them.
         </p>
       </div>
 
       <div class="surface-card stack">
         <h3 class="section-title">Skills Used</h3>
         <ul class="project-list">
-            <li>Astro</li>
-            <li>HTML</li>
-            <li>CSS</li>
+          <li>Astro</li>
+          <li>HTML</li>
+          <li>CSS</li>
         </ul>
       </div>
 
-      <!--
-      [Explain what this project taught you technically and personally. You can talk about learning Astro, improving your CSS structure, understanding reusable components, or how design and engineering interact.]
-      -->
       <div class="surface-card stack">
         <h3 class="section-title">What I Learned</h3>
         <p class="main-text">
-            This project served as a continuation and culmination of my autodidactic forays into web development. In school, I've mainly learned Computer Science through the lens of low-level programming in languages such as C++, C, and 86-64 Assembly. These languages are great to learn how the tech we use everyday works, however they do not allow for useful implementation outside of development. With this project I learned another facet of computer science, how to make sites on the web, how to make them look good, and how to make them performant. I learnt how to make a color palette and began learning how to make favicons and svg art to spurce up the website. I improved my knowledge of how to write in HTML, which helps to understand how to better structure notes and documents for my classes. I also learned how to be persistent. This version of the site is the second try essentially, I wrote another portfolio site, but it was bloated and unsofisticated. Thus I decided to start from scratch in order to improve the end product. I think overall that the site is in good shape for its first release, and I intend to keep iterating on it as I go. Overall, I am proud of what I have here, and what it means to have a platform of my own design where I can showcase who I am and what I do. :)
+          This project served as a continuation and culmination of my autodidactic forays into web development. In school, I've mainly learned Computer Science through the lens of low-level programming in languages such as C++, C, and 86-64 Assembly. These languages are great to learn how the tech we use everyday works, however they do not allow for useful implementation outside of development. With this project I learned another facet of computer science, how to make sites on the web, how to make them look good, and how to make them performant. I learnt how to make a color palette and began learning how to make favicons and svg art to spurce up the website. I improved my knowledge of how to write in HTML, which helps to understand how to better structure notes and documents for my classes. I also learned how to be persistent. This version of the site is the second try essentially, I wrote another portfolio site, but it was bloated and unsofisticated. Thus I decided to start from scratch in order to improve the end product. I think overall that the site is in good shape for its first release, and I intend to keep iterating on it as I go. Overall, I am proud of what I have here, and what it means to have a platform of my own design where I can showcase who I am and what I do. :)
         </p>
       </div>
 
       <div class="surface-card stack">
         <h3 class="section-title">What I Want To Improve</h3>
         <p class="main-text">
-            In the future, I have a shortlist of ideas I want to add. These include:
+          In the future, I have a shortlist of ideas I want to add. These include:
         </p>
         <ul class="project-list">
-            <li>Finishing the project showcase section</li>
-            <li>Adding a blog section, and uploading some of my writing</li>
-            <li>Adding more technical projects that showcase my engineering expertise and knowledge</li>
-            <li>Further refining the site to improve navigation and aesthetics</li>
-            <li>Rewriting the site in Spanish and French - The two languages I am fluent in - in order to improve accessiblity</li>
+          <li>Finishing the project showcase section</li>
+          <li>Adding a blog section, and uploading some of my writing</li>
+          <li>Adding more technical projects that showcase my engineering expertise and knowledge</li>
+          <li>Further refining the site to improve navigation and aesthetics</li>
+          <li>Rewriting the site in Spanish and French - The two languages I am fluent in - in order to improve accessiblity</li>
         </ul>
         <p class="main-text">
-            All of these ideas will create a more polished website, allow me to showcase my abilities, and create something that more closely aligns with my ideaof what my corner of the internet should look like.
+          All of these ideas will create a more polished website, allow me to showcase my abilities, and create something that more closely aligns with my ideaof what my corner of the internet should look like.
         </p>
       </div>
 
       <div class="hero-actions">
-        <a href="/#projects" class="button button-ghost">← Back to Projects</a>
+        <a href={homeProjectsHref} class="button button-ghost">← Back to Projects</a>
       </div>
     </div>
   </main>
